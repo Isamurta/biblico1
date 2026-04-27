@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Interativo - Histórias Bíblicas para Pais e Filhos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e2d9cf;
+      font-family: 'Segoe UI', 'Roboto', 'Georgia', serif;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Container estilo "livro/PDF" */
+    .ebook-container {
+      max-width: 1100px;
+      width: 100%;
+      background-color: #fffdf9;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 0 0 20px 0;
+    }
+
+    /* Páginas internas */
+    .page {
+      padding: 48px 56px;
+      background: white;
+      border-bottom: 1px solid #e9e0d3;
+      page-break-after: always; /* para impressão como PDF */
+      break-inside: avoid;
+    }
+
+    .cover {
+      background: #fef3e4;
+      text-align: center;
+      border-bottom: 4px solid #c29a6b;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-family: 'Georgia', serif;
+      color: #2c3e4e;
+      margin: 20px 0 10px;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      font-family: 'Georgia', serif;
+      color: #b57c48;
+      margin: 30px 0 15px;
+      border-left: 5px solid #c29a6b;
+      padding-left: 20px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: #2c3e4e;
+      margin: 20px 0 10px;
+      font-family: 'Georgia', serif;
+    }
+
+    .story-title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #8b5a2b;
+      text-align: center;
+    }
+
+    .illustration-placeholder {
+      background-color: #f3efea;
+      border: 2px dashed #c2a27a;
+      border-radius: 24px;
+      padding: 20px;
+      margin: 25px 0;
+      text-align: center;
+      font-family: monospace;
+      color: #7a5a3a;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+
+    .illustration-placeholder i {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+
+    .instruction {
+      background-color: #fff2df;
+      border-left: 6px solid #c29a6b;
+      padding: 12px 18px;
+      margin: 20px 0;
+      font-style: italic;
+      font-size: 0.9rem;
+      border-radius: 12px;
+    }
+
+    .parent-tip {
+      background-color: #e6f2ed;
+      padding: 15px 20px;
+      border-radius: 28px;
+      margin: 20px 0;
+      border-left: 6px solid #2c7a5e;
+    }
+
+    .child-read {
+      background-color: #fdf1dc;
+      padding: 12px 18px;
+      border-radius: 32px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #b45f2b;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .bible-verse {
+      font-family: monospace;
+      background: #f6eee2;
+      padding: 12px;
+      text-align: center;
+      border-radius: 20px;
+      font-size: 1rem;
+    }
+
+    .prayer {
+      background: #dce9e2;
+      padding: 16px;
+      border-radius: 24px;
+      margin-top: 20px;
+    }
+
+    .footer-page {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #aa9b88;
+      margin-top: 40px;
+      border-top: 1px solid #ede3d6;
+      padding-top: 20px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .ebook-container {
+        box-shadow: none;
+        max-width: 100%;
+      }
+      .page {
+        padding: 1.5cm;
+        page-break-after: always;
+      }
+      .illustration-placeholder {
+        border: 1px solid #ccc;
+        break-inside: avoid;
+      }
+    }
+
+    /* responsivo */
+    @media (max-width: 700px) {
+      .page {
+        padding: 28px 24px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="ebook-container">
+  
+  <!-- CAPA -->
+  <div class="page cover">
+    <div class="illustration-placeholder" style="min-height: 280px;">
+      <i>🖼️ 🎨</i>
+      <strong>ILUSTRAÇÃO DE CAPA:</strong> Um pai e seu filho sentados no sofá lendo uma Bíblia aberta, com luz suave ao fundo. Elementos: coração e estrelas. Coloque aqui uma imagem com alta resolução.
+    </div>
+    <h1 style="margin-top: 20px;">📖 Reconecte-se com seu filho através da Bíblia</h1>
+    <p style="font-size: 1.2rem; margin: 20px 0;">7 histórias bíblicas interativas para ler, aprender e orar juntos</p>
+    <p style="margin-top: 40px;"><strong>Um PDF para pais que desejam:</strong> ensinar a ler com amor, fortalecer a fé e criar memórias eternas.</p>
+    <div class="bible-verse" style="margin-top: 40px;">“Ensina a criança no caminho em que deve andar” – Provérbios 22:6</div>
+    <div class="footer-page">Uso familiar e devocional ☧</div>
+  </div>
+
+  <!-- GUIA PARA OS PAIS -->
+  <div class="page">
+    <h2>📘 Guia para os pais: Como usar este livro</h2>
+    <p>Este PDF foi pensado para momentos especiais entre você e seu filho. Cada história contém três partes:</p>
+    <ul style="margin: 20px 0 0 30px;">
+      <li><strong>📖 Leitura principal</strong> – você lê em voz alta, com entonação.</li>
+      <li><strong>🔤 Partes para a criança</strong> – palavras em destaque que seu filho tenta ler (apoiado por você).</li>
+      <li><strong>🙏 Reflexão e oração</strong> – perguntas simples e uma oração curta.</li>
+    </ul>
+    <div class="parent-tip">
+      💡 <strong>DICA DE RECONEXÃO:</strong> Antes de começar, abrace seu filho e diga: “Vamos viajar juntos nas histórias de Deus!”. Permita que ele aponte as figuras e repita as palavras.
+    </div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 📸</i>
+      <strong>ILUSTRAÇÃO SUGERIDA:</strong> Uma mãe/pai e criança sentados no chão com almofadas, rodeados de livros e um versículo na parede.
+    </div>
+  </div>
+
+  <!-- HISTÓRIA 1: A ARCA DE NOÉ (foco: obediência + leitura de animais) -->
+  <div class="page">
+    <div class="story-title">⛵ 1. A Arca de Noé</div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 🐘🐧</i>
+      <strong>ILUSTRAÇÃO AQUI:</strong> Noé construindo a arca, com muitos animais ao fundo (elefante, pomba, leão). Céu nublado e arco-íris ao longe.
+    </div>
+    <p>Deus viu que as pessoas haviam se esquecido de amá-Lo. Mas havia um homem bom chamado <strong>Noé</strong>. Deus disse: “Noé, construa uma grande arca, porque vai chover por 40 dias. Leve sua família e dois animais de cada espécie”.</p>
+    <div class="child-read">
+      🧒 AGORA É SUA VEZ, CRIANÇA! Leia os nomes dos animais com a ajuda do papai ou mamãe:<br>
+      🦁 LEÃO &nbsp;&nbsp; 🐘 ELEFANTE &nbsp;&nbsp; 🕊️ POMBA &nbsp;&nbsp; 🐑 CORDEIRO
+    </div>
+    <p>Noé obedeceu. Entraram na arca e as chuvas vieram. Depois de muito tempo, uma pomba voltou com um ramo de oliveira: a terra estava seca! Deus fez um arco-íris como promessa de amor.</p>
+    <div class="bible-verse">📖 Gênesis 6–9: “Noé andava com Deus”.</div>
+    <div class="prayer">
+      🙏 <strong>Oração para fazer com a criança:</strong> “Obrigado, Deus, por cuidar de nós e nos ensinar a obedecer. Ajude-nos a sermos como Noé. Amém.”
+    </div>
+    <div><strong>❓ Pergunta para conversar:</strong> O que você faria se Deus pedisse algo muito difícil? Que tal confiar n’Ele?</div>
+  </div>
+
+  <!-- HISTÓRIA 2: DAVI E GOLIAS -->
+  <div class="page">
+    <div class="story-title">⚔️ 2. Davi e Golias – Pequeno gigante da fé</div>
+    <div class="illustration-placeholder">
+      <i>🖼️ </i>
+      <strong>ILUSTRAÇÃO:</strong> Davi jovem com uma funda e cinco pedras lisas, e ao fundo o gigante Golias (grande armadura). Contraste de tamanhos.
+    </div>
+    <p>Os filisteus queriam guerra. O gigante Golias media mais de 3 metros e desafiava o exército de Israel. Todos tremiam de medo. Mas Davi, um pastorzinho, disse: “O Senhor me livra do leão e do urso, Ele me livrará desse filisteu!”.</p>
+    <div class="child-read">
+      🧒 REPITA COM ALEGRIA: <strong>“O Senhor é meu pastor, nada me faltará!”</strong> (Salmo 23:1)
+    </div>
+    <p>Davi pegou cinco pedras lisas no ribeiro, colocou na funda e atirou. A pedra acertou Golias, que caiu por terra. Deus deu a vitória não pela força, mas pela fé.</p>
+    <div class="parent-tip">
+      💬 Conversem: O que te parece “gigante” hoje? (medo do escuro, aprender a ler?) Deus é maior do que tudo.
+    </div>
+    <div class="prayer">
+      🙏 Oração: “Senhor, aumenta a nossa fé. Queremos confiar em Ti como Davi confiou. Amém.”
+    </div>
+    <div class="bible-verse">📖 1 Samuel 17: “O combate é do Senhor”.</div>
+  </div>
+
+  <!-- HISTÓRIA 3: JONAS E O GRANDE PEIXE (interativa com sons)-->
+  <div class="page">
+    <div class="story-title">🐋 3. Jonas e o grande peixe – A segunda chance</div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 🌊🐟</i>
+      <strong>ILUSTRAÇÃO:</strong> Jonas sendo lançado ao mar, um enorme peixe abrindo a boca, e atrás uma tempestade. Ilustração dramática e colorida.
+    </div>
+    <p>Deus pediu para Jonas ir a Nínive e pregar. Mas Jonas <span style="background:#fce4b4;">FUGIU</span> (agora a criança lê “FUGIU”) e entrou num barco. Veio uma tempestade enorme! Os marinheiros oraram e Jonas foi jogado no mar.</p>
+    <div class="child-read">
+      🎭 VAMOS FAZER OS SONS? <br>
+      🌊 *PLIM* (Jonas cai na água) → 🐟 *NHAC* (peixe engole Jonas)
+    </div>
+    <p>Três dias dentro do peixe, Jonas orou a Deus. O peixe vomitou Jonas na praia. Ele obedeceu e foi pregar em Nínive, e todos se arrependeram. Deus é cheio de misericórdia!</p>
+    <div class="bible-verse">📖 Jonas 2: “Do ventre do abismo clamei, e Tu me ouviste”.</div>
+    <div class="prayer">
+      🙏 Oração curta: “Deus, obrigado pela segunda chance. Ensina-nos a obedecer desde pequeninos. Amém.”
+    </div>
+  </div>
+
+  <!-- HISTÓRIA 4: O BOM SAMARITANO (compaixão e ações para a criança ler) -->
+  <div class="page">
+    <div class="story-title">🕊️ 4. O Bom Samaritano – Amor que age</div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 🏥❤️</i>
+      <strong>ILUSTRAÇÃO:</strong> Um homem caído na estrada, um samaritano ajuda-o e o leva para uma hospedaria. Ao lado, um sacerdote e um levita passam longe.
+    </div>
+    <p>Certo homem foi assaltado e ficou machucado na estrada. Um sacerdote passou e não ajudou. Um levita também não. Mas um samaritano – inimigo para os judeus – teve compaixão.</p>
+    <div class="child-read">
+      CRIANÇA, LEIA AS AÇÕES DO BOM SAMARITANO: <br>
+      <strong>“CUIDOU” • “DEITOU ÓLEO” • “LEVOU AO MÉDICO” • “PAGOU A CONTA”</strong>
+    </div>
+    <p>Jesus ensinou: “Vá e faça o mesmo”. Amar ao próximo é mostrar compaixão, não importa quem seja.</p>
+    <div class="parent-tip">
+      ❤️ Atividade: Desenhe uma cena onde você ajudou alguém ou pode ajudar um amigo na escola.
+    </div>
+    <div class="prayer">🙏 “Senhor, faz com que nosso coração seja bom como o samaritano. Ajudar os outros é servir a Ti.”</div>
+    <div class="bible-verse">📖 Lucas 10:27 – “Amarás o teu próximo como a ti mesmo”.</div>
+  </div>
+
+  <!-- HISTÓRIA 5: O NASCIMENTO DE JESUS -->
+  <div class="page">
+    <div class="story-title">🌟 5. O presente do céu – Natal de Jesus</div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 👼🐑⭐</i>
+      <strong>ILUSTRAÇÃO:</strong> Manjedoura com Maria, José, o menino Jesus, pastores e anjos no céu. Estrela brilhante acima.
+    </div>
+    <p>Há muito tempo, Maria e José viajaram para Belém. Não havia lugar na hospedaria, então Jesus nasceu num estábulo, deitado numa manjedoura.</p>
+    <div class="child-read">
+      🧒 COMPLETE A FRASE: “Maria e José foram para ______” (resposta: Belém) <br>
+      “Os anjos cantavam: Glória a Deus nas ______” (resposta: alturas)
+    </div>
+    <p>Os pastores correram para ver o Salvador. Jesus é o maior presente de Deus para o mundo. Ele veio nos ensinar sobre o amor e a salvação.</p>
+    <div class="prayer">🙏 “Querido Jesus, obrigado por nascer e viver entre nós. Que seu amor cresça em nosso lar.”</div>
+    <div class="bible-verse">📖 Lucas 2:11 – “Nasceu hoje o Salvador, que é Cristo, o Senhor”.</div>
+  </div>
+
+  <!-- HISTÓRIA EXTRA (BÔNUS): DANIEL NA COVA DOS LEÕES -->
+  <div class="page">
+    <div class="story-title">🦁 6. Bônus: Daniel e os leões – Confiar sempre</div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 🦁😇</i>
+      <strong>ILUSTRAÇÃO:</strong> Daniel dentro da cova com vários leões ao redor, mas calmo e orando. Anjo com asas ao fundo.
+    </div>
+    <p>O rei Dario assinou uma lei que ninguém podia orar a nenhum deus a não ser ele. Mas Daniel orava a Deus três vezes por dia. Por causa disso, foi jogado na cova dos leões famintos.</p>
+    <div class="child-read">
+      A CRIANÇA REPETE: <strong>“Meu Deus enviou o seu anjo e fechou a boca dos leões.”</strong> (Daniel 6:22)
+    </div>
+    <p>Deus protegeu Daniel, nenhum leão o feriu. O rei ficou feliz e disse: “O Deus de Daniel é o Deus vivo!”</p>
+    <div class="parent-tip">
+      ✅ Ensine seu filho: Mesmo quando temos medo, podemos confiar que Deus está conosco.
+    </div>
+    <div class="prayer">🙏 “Deus, dá-nos coragem como Daniel. Queremos orar e confiar sempre.”</div>
+  </div>
+
+  <!-- PÁGINA DE ATIVIDADES E VERSÍCULOS PARA MEMORIZAR -->
+  <div class="page">
+    <h2>🎨 Atividades para colorir e memorizar</h2>
+    <div class="illustration-placeholder">
+      <i>🖼️ 🖍️</i>
+      <strong>ILUSTRAÇÃO - PÁGINA PARA COLORIR:</strong> Desenho da Arca de Noé ou o nascimento de Jesus (contornos simples). Aqui você pode inserir uma página para a criança colorir.
+    </div>
+    <div class="illustration-placeholder">
+      <i>🖼️ ✨</i>
+      <strong>SEGUNDA ATIVIDADE:</strong> "Labirinto da Fé" – ajude Davi a chegar até Golias com sua funda. Coloque uma ilustração educativa.
+    </div>
+    <h3>📜 Versículos fáceis para memorizar</h3>
+    <ul>
+      <li><strong>Provérbios 3:5</strong> – “Confie no Senhor de todo o seu coração.”</li>
+      <li><strong>Salmo 56:3</strong> – “Quando estou com medo, confio em Ti.”</li>
+      <li><strong>Efésios 4:32</strong> – “Sejam bondosos e compassivos uns para com os outros.”</li>
+    </ul>
+    <div class="parent-tip">
+      💡 Dica: Recorte pequenos cartões com os versículos e cole na parede do quarto.
+    </div>
+  </div>
+
+  <!-- BÔNUS "PASSPORTE DA RECONEXÃO"  + ORAÇÃO FINAL -->
+  <div class="page">
+    <h2>⭐ Passaporte da Reconexão – 21 dias de desafios</h2>
+    <p>Use este passaporte para fortalecer o vínculo com seu filho através da fé. Cada dia, faça uma atividade simples:</p>
+    <div style="background: #fef2e0; padding: 20px; border-radius: 28px; margin: 20px 0;">
+      <p>✅ Dia 1: Abrace seu filho e recite o Salmo 23 juntos.<br>
+      ✅ Dia 2: Pergunte: “Qual das histórias bíblicas você mais gostou?” <br>
+      ✅ Dia 3: Desenhem juntos a passagem de Jonas e o peixe.<br>
+      ✅ ... até o dia 21: Orem agradecendo por 21 momentos de conexão.</p>
+    </div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 🎫</i>
+      <strong>ILUSTRAÇÃO DO PASSAPORTE:</strong> Modelo de um passaporte com carimbos e corações, escrito "Passaporte da Reconexão - Fé em Família".
+    </div>
+    <div class="prayer">
+      🌿 Oração final para pais e filhos:<br>
+      “Pai do céu, agradecemos por cada história e por nos unir através da Tua Palavra. Ajuda-nos a viver os ensinamentos de Jesus e a crescer juntos no amor. Amém.”
+    </div>
+    <div class="footer-page">📌 Este PDF é de uso pessoal e pode ser impresso para atividades em família.</div>
+  </div>
+
+  <!-- ÚLTIMA PÁGINA COM QR CODE BÔNUS (ÁUDIOS) -->
+  <div class="page">
+    <h2>🎧 Bônus exclusivo: Áudios narrados</h2>
+    <p>Escaneie o QR code abaixo para ouvir as histórias contadas com voz suave e sons da natureza. Perfeito para a hora de dormir.</p>
+    <div class="illustration-placeholder" style="min-height: 180px;">
+      <i>📱 🎶</i>
+      <strong>ESPAÇO PARA QR CODE:</strong> Insira aqui um QR code que direcione para uma playlist (Google Drive ou SoundCloud) com a narração das 5 principais histórias.
+    </div>
+    <div class="illustration-placeholder">
+      <i>🖼️ 🎤</i>
+      <strong>SUGESTÃO DE ILUSTRAÇÃO:</strong> Uma criança dormindo com fones de ouvido e uma estrela brilhando – “A Bíblia em forma de áudio”.
+    </div>
+    <p style="text-align: center; margin-top: 30px;">✨ Obrigado por escolher reconectar-se com seu filho através da verdade que transforma. ✨</p>
+  </div>
+</div>
+
+<!-- NOTA FINAL: LISTA RESUMO DE ILUSTRAÇÕES PARA O AUTOR -->
+<div style="max-width: 1100px; margin: 30px auto; background: #f7f2ea; padding: 20px; border-radius: 30px; font-family: monospace;">
+  <h3>📌 RESUMO DAS ILUSTRAÇÕES QUE VOCÊ DEVE COLOCAR (espaços já indicados):</h3>
+  <ul style="margin-left: 20px;">
+    <li>1. <strong>Capa:</strong> Pai e filho lendo Bíblia juntos, luz suave.</li>
+    <li>2. <strong>Guia dos pais:</strong> Cenário aconchegante de leitura (almofadas, livro).</li>
+    <li>3. <strong>Arca de Noé:</strong> Noé, arca, animais em fila.</li>
+    <li>4. <strong>Davi e Golias:</strong> Davi com funda e gigante Golias.</li>
+    <li>5. <strong>Jonas:</strong> Tempestade e o grande peixe.</li>
+    <li>6. <strong>Bom Samaritano:</strong> O samaritano ajudando o ferido.</li>
+    <li>7. <strong>Nascimento de Jesus:</strong> Manjedoura com estrela.</li>
+    <li>8. <strong>Daniel na cova dos leões:</strong> Daniel com leões calmos e anjo.</li>
+    <li>9. <strong>Página de colorir:</strong> Desenho da Arca (preto e branco).</li>
+    <li>10. <strong>Labirinto da fé:</strong> Davi e Golias em labirinto simples.</li>
+    <li>11. <strong>Passaporte da Reconexão:</strong> Passaporte ilustrado.</li>
+    <li>12. <strong>QR Code + áudio:</strong> Ilustração de criança dormindo com fone.</li>
+  </ul>
+  <p>✅ Todas as indicações estão dentro do HTML, prontas para você substituir por imagens reais. Basta editar o código e trocar o conteúdo de cada <code>.illustration-placeholder</code> por tags <code>&lt;img&gt;</code> com suas ilustrações.</p>
+</div>
+</body>
+</html>
