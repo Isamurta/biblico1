@@ -141,37 +141,20 @@
             z-index: 1;
         }
 
-        /* Placeholder de imagem da capa */
+        /* Container da imagem da capa */
         .capa-imagem {
             width: 100%;
             aspect-ratio: 4/3;
-            background: linear-gradient(135deg, rgba(62,42,20,0.8) 0%, rgba(45,92,92,0.6) 100%);
             border-radius: 12px;
             border: 1px solid rgba(196,154,69,0.25);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
             position: relative;
             z-index: 1;
+            overflow: hidden;
         }
 
-        .capa-imagem .img-label {
-            font-family: var(--fonte-corpo);
-            font-size: 12px;
-            color: rgba(255,255,255,0.4);
-            font-style: italic;
-            text-align: center;
-            padding: 0 20px;
-        }
-        .capa-imagem .img-icon {
-            font-size: 40px;
-            opacity: 0.3;
-        }
-        /* Para imagem real: */
         .capa-imagem img {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             border-radius: 12px;
         }
@@ -271,7 +254,6 @@
         .pagina-esquerda {
             border-radius: 10px 2px 2px 10px;
             margin-right: 4px;
-            /* Sombra interna — página esquerda mais escura na lombada */
             box-shadow: inset -12px 0 20px rgba(0,0,0,0.06);
         }
 
@@ -281,7 +263,6 @@
             box-shadow: inset 12px 0 20px rgba(0,0,0,0.04);
         }
 
-        /* Padrão de fundo sutil nas páginas */
         .pagina::before {
             content: '';
             position: absolute;
@@ -295,7 +276,6 @@
             pointer-events: none;
         }
 
-        /* ── Etiqueta de lado da página ── */
         .etiqueta-pagina {
             display: flex;
             align-items: center;
@@ -331,7 +311,6 @@
             font-style: italic;
         }
 
-        /* ── Cabeçalho de série ── */
         .cabecalho-serie {
             display: flex;
             align-items: center;
@@ -358,7 +337,6 @@
             letter-spacing: 1px;
         }
 
-        /* ── Moldura de imagem ── */
         .moldura-imagem {
             background: #fff8ee;
             border-radius: var(--r-bloco);
@@ -370,35 +348,12 @@
         }
 
         .moldura-imagem img {
-            width: 100%; height: auto;
+            width: 100%;
+            height: auto;
             border-radius: 14px 2px 14px 2px;
             display: block;
         }
 
-        /* Placeholder com proporção definida */
-        .img-placeholder {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, var(--creme-escuro) 0%, rgba(196,154,69,0.15) 100%);
-            border-radius: 14px 2px 14px 2px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        .img-placeholder .ico { font-size: 28px; opacity: 0.35; }
-        .img-placeholder .desc {
-            font-family: var(--fonte-corpo);
-            font-size: 11px;
-            color: var(--marrom-mid);
-            opacity: 0.55;
-            font-style: italic;
-            text-align: center;
-            padding: 0 16px;
-        }
-
-        /* ── Texto adulto ── */
         .texto-adulto {
             font-family: var(--fonte-adulto);
             font-size: 16px;
@@ -412,7 +367,6 @@
             position: relative;
         }
 
-        /* Aspas decorativas */
         .texto-adulto::before {
             content: '\201C';
             position: absolute;
@@ -425,7 +379,6 @@
             line-height: 1;
         }
 
-        /* ── Versículo integrado na página adulto ── */
         .versiculo-inline {
             font-family: var(--fonte-adulto);
             font-size: 13.5px;
@@ -451,11 +404,6 @@
             text-transform: uppercase;
         }
 
-        /* ═══════════════════════════════════════════
-           PÁGINA DA CRIANÇA
-        ═══════════════════════════════════════════ */
-
-        /* Frase âncora */
         .frase-crianca {
             font-family: var(--fonte-crianca);
             font-size: 34px;
@@ -470,7 +418,6 @@
             box-shadow: 0 3px 0 rgba(74,124,111,0.15);
         }
 
-        /* Pergunta do dia */
         .pergunta-dia {
             background: var(--rosa-suave);
             border-radius: var(--r-infantil);
@@ -497,7 +444,6 @@
             line-height: 1.4;
         }
 
-        /* Atividade / espaço para desenhar */
         .atividade {
             border: 2.5px dashed var(--dourado);
             border-radius: var(--r-infantil);
@@ -528,7 +474,6 @@
             line-height: 1.4;
         }
 
-        /* Oração participativa */
         .oracao-participativa {
             background: var(--azul);
             border-radius: var(--r-infantil);
@@ -583,7 +528,6 @@
             letter-spacing: 1px;
         }
 
-        /* ── Lição prática (página adulto) ── */
         .licao-pratica {
             background: rgba(26,53,53,0.06);
             border-left: 4px solid var(--azul-claro);
@@ -606,7 +550,6 @@
             margin-bottom: 4px;
         }
 
-        /* ── Rodapé da página ── */
         .rodape-pagina {
             margin-top: auto;
             display: flex;
@@ -743,19 +686,10 @@
             z-index: 1;
         }
 
-        /* ═══════════════════════════════════════════
-           RESPONSIVO
-        ═══════════════════════════════════════════ */
+        /* Responsivo e impressão (mantidos) */
         @media screen and (max-width: 820px) {
-            .livro-spread {
-                flex-direction: column;
-                border-radius: 16px;
-            }
-            .pagina-esquerda,
-            .pagina-direita {
-                margin: 0;
-                border-radius: 12px;
-            }
+            .livro-spread { flex-direction: column; border-radius: 16px; }
+            .pagina-esquerda, .pagina-direita { margin: 0; border-radius: 12px; }
             .livro-spread::before { display: none; }
             .frase-crianca { font-size: 26px; }
         }
@@ -766,69 +700,43 @@
             .texto-adulto { font-size: 15px; }
         }
 
-        /* ═══════════════════════════════════════════
-           ANIMAÇÃO DE ENTRADA
-        ═══════════════════════════════════════════ */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        .capa,
-        .livro-spread,
-        .contracapa {
-            animation: fadeUp 0.7s ease both;
-        }
+        .capa, .livro-spread, .contracapa { animation: fadeUp 0.7s ease both; }
         .livro-spread:nth-child(2) { animation-delay: 0.1s; }
         .livro-spread:nth-child(3) { animation-delay: 0.2s; }
         .livro-spread:nth-child(4) { animation-delay: 0.3s; }
         .contracapa               { animation-delay: 0.4s; }
 
-        /* ═══════════════════════════════════════════
-           PRINT
-        ═══════════════════════════════════════════ */
         @media print {
             body { background: white; padding: 0; gap: 0; }
             .capa, .contracapa { page-break-after: always; box-shadow: none; }
-            .livro-spread {
-                page-break-after: always;
-                box-shadow: none;
-                background: #d9cbb8;
-            }
+            .livro-spread { page-break-after: always; box-shadow: none; background: #d9cbb8; }
             .pagina { background: white; box-shadow: none; }
             .pagina::before { display: none; }
             .livro-spread::before, .livro-spread::after { display: none; }
             .oracao-participativa { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .frase-crianca, .pergunta-dia, .atividade {
-                break-inside: avoid;
-            }
+            .frase-crianca, .pergunta-dia, .atividade { break-inside: avoid; }
         }
     </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════
-     CAPA
-══════════════════════════════════════════════ -->
+<!-- CAPA -->
 <div class="capa">
     <span class="capa-serie">Episódio 03 · Devocional Familiar</span>
 
     <div class="capa-simbolo">
-        <!-- Pomba estilizada em SVG -->
         <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="40" cy="40" r="38" stroke="#c49a45" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.5"/>
             <circle cx="40" cy="40" r="30" stroke="#c49a45" stroke-width="0.8" opacity="0.3"/>
-            <!-- corpo da pomba -->
-            <path d="M24 44 Q30 30 48 32 Q58 33 60 42 Q62 52 50 56 Q36 60 26 52 Z"
-                  fill="#c49a45" opacity="0.9"/>
-            <!-- asa -->
-            <path d="M30 38 Q38 26 52 30 Q44 36 40 44 Z"
-                  fill="#e8c97a" opacity="0.8"/>
-            <!-- cabeça -->
+            <path d="M24 44 Q30 30 48 32 Q58 33 60 42 Q62 52 50 56 Q36 60 26 52 Z" fill="#c49a45" opacity="0.9"/>
+            <path d="M30 38 Q38 26 52 30 Q44 36 40 44 Z" fill="#e8c97a" opacity="0.8"/>
             <circle cx="58" cy="38" r="7" fill="#c49a45" opacity="0.9"/>
-            <!-- bico -->
             <path d="M64 37 L70 39 L64 41 Z" fill="#e8c97a"/>
-            <!-- ramo de oliveira -->
             <path d="M28 56 Q24 62 22 66" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round"/>
             <ellipse cx="24" cy="60" rx="4" ry="2.5" fill="#4a7c6f" opacity="0.8" transform="rotate(-30 24 60)"/>
             <ellipse cx="21" cy="64" rx="3" ry="2"   fill="#4a7c6f" opacity="0.8" transform="rotate(-50 21 64)"/>
@@ -838,44 +746,29 @@
 
     <div class="capa-divisor"></div>
 
-    <!-- Imagem principal da capa -->
     <div class="capa-imagem">
-        <!-- <img src="capa-arca-noe.jpg" alt="A Arca de Noé"> -->
-        <span class="img-icon">🌊</span>
-        <span class="img-label"><strong>Imagem da capa</strong><br>
-        A arca flutuando em águas calmas, grande arco-íris ao fundo, pomba branca com ramo de oliveira. Estilo aquarela, luz dourada e textura artesanal.<br><em>(substituir pela imagem gerada)</em></span>
+        <img src="capa.png" alt="Capa: A Arca de Noé">
     </div>
 
     <div class="capa-titulo-historia">A Arca de Noé</div>
     <span class="capa-episodio">Gênesis 6 – 9 · Para famílias</span>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     SPREAD 1: Promessa e Construção
-══════════════════════════════════════════════ -->
+<!-- SPREAD 1 -->
 <div class="livro-spread">
-
-    <!-- PÁGINA 1 — ADULTO: Promessa e Construção -->
+    <!-- Página 1 – Adulto -->
     <div class="pagina pagina-esquerda">
         <div class="etiqueta-pagina">
             <span class="tag tag-adulto">Leia em voz alta</span>
             <span class="titulo-episodio">A Promessa e a Construção</span>
         </div>
-
         <div class="cabecalho-serie">
             <span class="marca">Minuto com Deus</span>
             <span class="num-pagina">01</span>
         </div>
 
-        <!-- Foto 1A: Noé construindo a arca -->
         <div class="moldura-imagem">
-            <!-- <img src="1a-noe-construindo.jpg" alt="Noé construindo a arca"> -->
-            <div class="img-placeholder">
-                <span class="ico">🪵</span>
-                <span class="desc"><strong>Ilustração 1A · 16:9</strong><br>
-                Noé construindo a arca com ferramentas simples, sorriso sereno, luz dourada e tábuas de madeira. Ao fundo, colinas verdes. Aquarela minimalista, cores terrosas e quentes, textura artesanal.</span>
-            </div>
+            <img src="foto1a.png" alt="Noé construindo a arca">
         </div>
 
         <p class="texto-adulto">
@@ -887,14 +780,8 @@
             <span class="ref">— Gênesis 6:22</span>
         </div>
 
-        <!-- Foto 1B: Deus falando com Noé -->
         <div class="moldura-imagem">
-            <!-- <img src="1b-deus-noe.jpg" alt="Deus fala com Noé"> -->
-            <div class="img-placeholder">
-                <span class="ico">✨</span>
-                <span class="desc"><strong>Ilustração 1B · 16:9</strong><br>
-                Deus (luz suave e nuvens douradas) falando com Noé em oração. Noé ajoelhado, expressão de confiança e paz. Cores creme, marrom e dourado suave. Atmosfera celestial e terna.</span>
-            </div>
+            <img src="foto1b.png" alt="Deus falando com Noé em oração">
         </div>
 
         <div class="licao-pratica">
@@ -908,26 +795,19 @@
         </div>
     </div>
 
-    <!-- PÁGINA 2 — CRIANÇA: Promessa e Construção -->
+    <!-- Página 2 – Criança -->
     <div class="pagina pagina-direita">
         <div class="etiqueta-pagina">
             <span class="tag tag-crianca">Momento da criança</span>
             <span class="titulo-episodio">Noé obedeceu a Deus!</span>
         </div>
-
         <div class="cabecalho-serie">
             <span class="marca">Minuto com Deus</span>
             <span class="num-pagina">02</span>
         </div>
 
-        <!-- Foto 2A: Animais entrando na arca -->
         <div class="moldura-imagem">
-            <!-- <img src="2a-animais.jpg" alt="Animais entrando na arca"> -->
-            <div class="img-placeholder">
-                <span class="ico">🦒🐘</span>
-                <span class="desc"><strong>Ilustração 2A · 16:9</strong><br>
-                Fila de animais entrando na arca, dois a dois, com expressões dóceis. Girafas, elefantes, leões, coelhos e pássaros sob céu pastel. Aquarela suave, luz quente e textura artesanal.</span>
-            </div>
+            <img src="foto2a.png" alt="Animais entrando na arca">
         </div>
 
         <p class="frase-crianca">Deus cuida de mim<br>e da minha família</p>
@@ -959,32 +839,21 @@
     </div>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     SPREAD 2: Animais e Segurança
-══════════════════════════════════════════════ -->
+<!-- SPREAD 2 -->
 <div class="livro-spread">
-
-    <!-- PÁGINA 3 — ADULTO: O Cuidado de Deus e a segurança na arca -->
+    <!-- Página 3 – Adulto -->
     <div class="pagina pagina-esquerda">
         <div class="etiqueta-pagina">
             <span class="tag tag-adulto">Leia em voz alta</span>
             <span class="titulo-episodio">O Cuidado de Deus</span>
         </div>
-
         <div class="cabecalho-serie">
             <span class="marca">Minuto com Deus</span>
             <span class="num-pagina">03</span>
         </div>
 
-        <!-- Foto 3A: Família dentro da arca -->
         <div class="moldura-imagem">
-            <!-- <img src="3a-familia-arca.jpg" alt="Família de Noé na arca"> -->
-            <div class="img-placeholder">
-                <span class="ico">🕯️</span>
-                <span class="desc"><strong>Ilustração 3A · 16:9</strong><br>
-                Interior da arca: família de Noé reunida ao redor de uma lamparina, luz quente e acolhedora. Animais descansando (ovelhas, pássaros). Sensação de abrigo e paz. Aquarela, tons dourados.</span>
-            </div>
+            <img src="foto3a.png" alt="Família de Noé reunida na arca">
         </div>
 
         <p class="texto-adulto">
@@ -996,14 +865,8 @@
             <span class="ref">— Salmos 23:1</span>
         </div>
 
-        <!-- Foto 3B: Arca na chuva -->
         <div class="moldura-imagem">
-            <!-- <img src="3b-arca-chuva.jpg" alt="Arca na chuva"> -->
-            <div class="img-placeholder">
-                <span class="ico">🌧️</span>
-                <span class="desc"><strong>Ilustração 3B · 16:9</strong><br>
-                Arca flutuando sobre as águas sob chuva suave. Janelas iluminadas com brilho dourado contrastando com o cinza. No horizonte, prenúncio de luz. Composição minimalista, textura artesanal.</span>
-            </div>
+            <img src="foto3b.png" alt="Arca flutuando na chuva">
         </div>
 
         <div class="licao-pratica">
@@ -1017,26 +880,19 @@
         </div>
     </div>
 
-    <!-- PÁGINA 4 — CRIANÇA: Segurança -->
+    <!-- Página 4 – Criança -->
     <div class="pagina pagina-direita">
         <div class="etiqueta-pagina">
             <span class="tag tag-crianca">Momento da criança</span>
             <span class="titulo-episodio">Seguros com Deus!</span>
         </div>
-
         <div class="cabecalho-serie">
             <span class="marca">Minuto com Deus</span>
             <span class="num-pagina">04</span>
         </div>
 
-        <!-- Foto 4A: Passarinhos na rampa -->
         <div class="moldura-imagem">
-            <!-- <img src="4a-passarinhos.jpg" alt="Passarinhos entrando na arca"> -->
-            <div class="img-placeholder">
-                <span class="ico">🐦</span>
-                <span class="desc"><strong>Ilustração 4A · 16:9</strong><br>
-                Close de um casal de passarinhos azuis entrando na arca, rampa de madeira ao fundo. Frestas de luz dourada da tarde. Sensação de paz e delicadeza. Tons pastéis e traços minimalistas.</span>
-            </div>
+            <img src="foto4a.png" alt="Passarinhos entrando na arca">
         </div>
 
         <p class="frase-crianca">Com Deus eu me sinto<br>seguro e protegido</p>
@@ -1067,32 +923,21 @@
     </div>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     SPREAD 3: Arco-Íris e Aliança
-══════════════════════════════════════════════ -->
+<!-- SPREAD 3 -->
 <div class="livro-spread">
-
-    <!-- PÁGINA 5 — ADULTO: Arco-Íris e Aliança -->
+    <!-- Página 5 – Adulto -->
     <div class="pagina pagina-esquerda">
         <div class="etiqueta-pagina">
             <span class="tag tag-adulto">Leia em voz alta</span>
             <span class="titulo-episodio">A Nova Aliança</span>
         </div>
-
         <div class="cabecalho-serie">
             <span class="marca">Minuto com Deus</span>
             <span class="num-pagina">05</span>
         </div>
 
-        <!-- Foto 5A: Família sob o arco-íris -->
         <div class="moldura-imagem">
-            <!-- <img src="5a-arco-iris.jpg" alt="Saída da arca e arco-íris"> -->
-            <div class="img-placeholder">
-                <span class="ico">🌈</span>
-                <span class="desc"><strong>Ilustração 5A · 16:9</strong><br>
-                Noé e família saindo da arca, contemplando imenso arco-íris. Animais saindo alegremente, paisagem renovada com gotas de orvalho. Aquarela, luz dourada do amanhecer, expressões de gratidão.</span>
-            </div>
+            <img src="foto5a.png" alt="Noé e a família saindo da arca sob o arco-íris">
         </div>
 
         <p class="texto-adulto">
@@ -1104,14 +949,8 @@
             <span class="ref">— Gênesis 9:13</span>
         </div>
 
-        <!-- Foto 5B: Pombas e arco-íris -->
         <div class="moldura-imagem">
-            <!-- <img src="5b-pomba-arco.jpg" alt="Pomba e arco-íris"> -->
-            <div class="img-placeholder">
-                <span class="ico">🕊️</span>
-                <span class="desc"><strong>Ilustração 5B · 16:9</strong><br>
-                Arco-íris suave sobre paisagem tranquila, arca ao longe. Pombas brancas voando. Figura (criança) de braços abertos em gratidão. Composição vertical, aquarela, textura artesanal.</span>
-            </div>
+            <img src="foto5b.png" alt="Pombas voando sob o arco-íris, arca ao longe">
         </div>
 
         <div class="licao-pratica">
@@ -1125,26 +964,19 @@
         </div>
     </div>
 
-    <!-- PÁGINA 6 — CRIANÇA: Aliança e Gratidão -->
+    <!-- Página 6 – Criança -->
     <div class="pagina pagina-direita">
         <div class="etiqueta-pagina">
             <span class="tag tag-crianca">Momento da criança</span>
             <span class="titulo-episodio">Deus cumpre as promessas!</span>
         </div>
-
         <div class="cabecalho-serie">
             <span class="marca">Minuto com Deus</span>
             <span class="num-pagina">06</span>
         </div>
 
-        <!-- Foto 6A: Criança admirando arco-íris -->
         <div class="moldura-imagem">
-            <!-- <img src="6a-crianca-arco.jpg" alt="Criança e arco-íris"> -->
-            <div class="img-placeholder">
-                <span class="ico">🌤️</span>
-                <span class="desc"><strong>Ilustração 6A · 16:9</strong><br>
-                Criança de braços abertos sob o arco-íris, com expressão de alegria e gratidão. Pombas brancas, luz dourada. Aquarela, textura artesanal e traços dóceis.</span>
-            </div>
+            <img src="foto6a.png" alt="Criança de braços abertos admirando o arco-íris">
         </div>
 
         <p class="frase-crianca">O arco-íris me lembra<br>que Deus me ama!</p>
@@ -1176,10 +1008,7 @@
     </div>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     CONTRACAPA
-══════════════════════════════════════════════ -->
+<!-- CONTRACAPA -->
 <div class="contracapa">
     <span class="titulo-secao">Coleção completa</span>
     <h3>Mais histórias para o seu<br>Minuto com Deus</h3>
