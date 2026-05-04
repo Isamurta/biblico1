@@ -1,507 +1,1228 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Livro Infantil | Histórias Bíblicas para Pais e Filhos</title>
-  <style>
-    /* RESET E CONFIGURAÇÃO PARA PÁGINAS A4 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minuto com Deus — A Arca de Noé</title>
 
-    body {
-      background-color: #c0b7a3;  /* fundo neutro simulando estante */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 0;
-      font-family: 'Georgia', 'Times New Roman', 'Palatino', serif;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Baloo+2:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-    /* cada "folha" do livro - formato A4 vertical */
-    .page {
-      width: 21cm;
-      min-height: 29.7cm;
-      background: #fffcf4;
-      margin: 20px auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2), 0 0 0 1px #e2d5c0 inset, 0 0 0 2px #fffcf4 inset;
-      border-radius: 8px;
-      position: relative;
-      padding: 1.8cm 1.5cm 1.5cm 1.5cm;
-      page-break-after: always;
-      break-inside: avoid;
-      box-sizing: border-box;
-    }
+    <style>
+        /* ═══════════════════════════════════════════
+           TOKENS & VARIÁVEIS GLOBAIS
+        ═══════════════════════════════════════════ */
+        :root {
+            /* Paleta principal */
+            --creme:        #f7f0e3;
+            --creme-escuro: #ede4d0;
+            --marrom:       #3e2a14;
+            --marrom-mid:   #6b4423;
+            --dourado:      #c49a45;
+            --dourado-claro:#e8c97a;
+            --azul:         #1a3535;
+            --azul-claro:   #2d5c5c;
+            --verde-agua:   #4a7c6f;
+            --rosa-suave:   #f5dcd0;
+            --capa-fundo:   #1e2e1e;
 
-    /* cabeçalho decorativo das páginas */
-    .page-header {
-      text-align: center;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      color: #c6b18b;
-      border-top: 1px solid #f0e2d0;
-      border-bottom: 1px solid #f0e2d0;
-      padding: 6px 0;
-      margin-bottom: 28px;
-      font-variant: small-caps;
-    }
+            /* Bordas reutilizáveis — apenas 3 formas */
+            --r-livro:  20px;     /* livro / capa */
+            --r-bloco:  16px 4px 16px 4px;  /* blocos de conteúdo */
+            --r-infantil: 32px;   /* elementos da criança */
 
-    /* número da página no rodapé */
-    .page-number {
-      position: absolute;
-      bottom: 1.2cm;
-      right: 1.5cm;
-      font-size: 0.7rem;
-      font-family: monospace;
-      color: #b99f7c;
-      background: #fffcf4;
-      padding: 0 6px;
-    }
+            /* Tipografia */
+            --fonte-adulto: 'Cormorant Garamond', serif;
+            --fonte-crianca: 'Baloo 2', cursive;
+            --fonte-corpo:  'Lato', sans-serif;
+        }
 
-    /* estilos tipográficos infantis e acolhedores */
-    h1 {
-      font-size: 2.2rem;
-      text-align: center;
-      font-weight: 700;
-      color: #4a2e1a;
-      margin: 0.5cm 0 0.8cm;
-      font-family: 'Georgia', serif;
-      letter-spacing: -0.5px;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    h2 {
-      font-size: 1.6rem;
-      color: #8b5a2b;
-      margin: 0.6cm 0 0.4cm;
-      border-left: 6px solid #deba8a;
-      padding-left: 18px;
-      font-weight: 600;
-    }
+        body {
+            background: #2b2015;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(100,60,20,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(30,50,30,0.4) 0%, transparent 55%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px 60px;
+            gap: 60px;
+            min-height: 100vh;
+        }
 
-    .story-title {
-      font-size: 2rem;
-      text-align: center;
-      font-weight: bold;
-      color: #a06e3c;
-      margin: 0.2cm 0 0.6cm;
-      font-family: 'Georgia', serif;
-      border-bottom: 2px dotted #eedbc8;
-      padding-bottom: 12px;
-    }
+        /* ═══════════════════════════════════════════
+           CAPA
+        ═══════════════════════════════════════════ */
+        .capa {
+            width: 100%;
+            max-width: 520px;
+            background: var(--capa-fundo);
+            border-radius: var(--r-livro);
+            box-shadow:
+                0 30px 60px rgba(0,0,0,0.7),
+                0 0 0 2px rgba(196,154,69,0.4),
+                inset 0 0 60px rgba(0,0,0,0.5);
+            padding: 48px 36px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    /* ilustrações com placeholder visual (ícone + texto amigável) */
-    .illustration {
-      width: 100%;
-      margin: 0.6cm 0;
-      background: #f5ede2;
-      border-radius: 28px;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-      font-family: 'Segoe UI', system-ui;
-      color: #b0906a;
-      border: 2px dashed #cbb586;
-      padding: 20px;
-      font-size: 0.9rem;
-    }
+        /* Textura de grão na capa */
+        .capa::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+            border-radius: var(--r-livro);
+        }
 
-    .illustration i {
-      font-size: 3rem;
-      display: block;
-      margin-bottom: 8px;
-    }
+        /* Moldura dourada da capa */
+        .capa::after {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border: 1.5px solid rgba(196,154,69,0.35);
+            border-radius: calc(var(--r-livro) - 6px);
+            pointer-events: none;
+        }
 
-    .illustration span {
-      background: #fff6ea;
-      padding: 6px 16px;
-      border-radius: 40px;
-      font-style: normal;
-    }
+        .capa-serie {
+            font-family: var(--fonte-corpo);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--dourado);
+            text-transform: uppercase;
+            opacity: 0.85;
+            position: relative;
+            z-index: 1;
+        }
 
-    /* parágrafos longos, com espaçamento de livro infantil */
-    p {
-      font-size: 1.05rem;
-      line-height: 1.65;
-      margin-bottom: 1rem;
-      text-align: justify;
-      text-indent: 0.8em;
-      color: #2f2a24;
-    }
+        /* Símbolo da série — pomba estilizada em SVG inline */
+        .capa-simbolo {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
 
-    /* destaques para a criança ler */
-    .child-read {
-      background: #fff3e4;
-      border-radius: 42px;
-      padding: 18px 20px;
-      margin: 24px 0;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #c0672c;
-      border-left: 8px solid #fad19e;
-      font-family: 'Georgia', serif;
-    }
+        .capa-simbolo svg {
+            width: 72px;
+            height: 72px;
+            filter: drop-shadow(0 4px 12px rgba(196,154,69,0.5));
+        }
 
-    .parent-tip {
-      background: #eef5ea;
-      border-radius: 28px;
-      padding: 16px 22px;
-      margin: 22px 0;
-      border-left: 5px solid #7fa06b;
-      font-size: 0.9rem;
-    }
+        .capa-titulo-serie {
+            font-family: var(--fonte-adulto);
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
 
-    .bible-verse {
-      background: #faf2e4;
-      padding: 14px 18px;
-      border-radius: 40px;
-      text-align: center;
-      font-style: italic;
-      margin: 22px 0;
-      font-size: 0.95rem;
-      color: #5d472e;
-    }
+        .capa-divisor {
+            width: 80px;
+            height: 1.5px;
+            background: linear-gradient(to right, transparent, var(--dourado), transparent);
+            position: relative;
+            z-index: 1;
+        }
 
-    .prayer {
-      background: #f9ede0;
-      border-radius: 36px;
-      padding: 16px;
-      margin-top: 20px;
-      border-bottom: 2px solid #e9cfb2;
-      font-size: 0.95rem;
-    }
+        /* Placeholder de imagem da capa */
+        .capa-imagem {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, rgba(62,42,20,0.8) 0%, rgba(45,92,92,0.6) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(196,154,69,0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
 
-    .footer-note-book {
-      margin-top: 0.8cm;
-      text-align: center;
-      font-size: 0.7rem;
-      color: #c7af87;
-      border-top: 1px solid #efe0cf;
-      padding-top: 12px;
-    }
+        .capa-imagem .img-label {
+            font-family: var(--fonte-corpo);
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .capa-imagem .img-icon {
+            font-size: 40px;
+            opacity: 0.3;
+        }
+        /* Para imagem real: */
+        .capa-imagem img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
 
-    /* para impressão / PDF */
-    @media print {
-      body {
-        background: white;
-        padding: 0;
-        margin: 0;
-      }
-      .page {
-        margin: 0;
-        box-shadow: none;
-        border-radius: 0;
-        page-break-after: always;
-        break-inside: avoid;
-      }
-      .illustration {
-        border: 1px solid #ddd;
-        background: #faf7f0;
-      }
-    }
+        .capa-titulo-historia {
+            font-family: var(--fonte-adulto);
+            font-size: 36px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--dourado-claro);
+            text-align: center;
+            line-height: 1.15;
+            position: relative;
+            z-index: 1;
+        }
 
-    /* pequeno ajuste para garantir que nenhuma história seja cortada */
-    .page-break-safe {
-      break-inside: avoid;
-    }
-  </style>
+        .capa-episodio {
+            font-family: var(--fonte-corpo);
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ═══════════════════════════════════════════
+           LIVRO SPREAD (PÁGINAS DUPLAS)
+        ═══════════════════════════════════════════ */
+        .livro-spread {
+            display: flex;
+            width: 100%;
+            max-width: 1120px;
+            background: var(--marrom);
+            border-radius: var(--r-livro) 6px 6px var(--r-livro);
+            box-shadow:
+                0 24px 50px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(196,154,69,0.2),
+                inset 0 0 30px rgba(0,0,0,0.3);
+            padding: 12px 10px;
+            position: relative;
+        }
+
+        /* Lombada */
+        .livro-spread::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 50%;
+            width: 8px;
+            transform: translateX(-50%);
+            background: linear-gradient(to right,
+                rgba(0,0,0,0.3) 0%,
+                rgba(180,140,80,0.5) 30%,
+                rgba(220,180,100,0.6) 50%,
+                rgba(180,140,80,0.5) 70%,
+                rgba(0,0,0,0.3) 100%);
+            z-index: 10;
+        }
+
+        /* Marcador de fita com cruz */
+        .livro-spread::after {
+            content: '';
+            position: absolute;
+            top: -18px;
+            right: 32px;
+            width: 28px;
+            height: 50px;
+            background: var(--dourado);
+            border-radius: 0 0 6px 6px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
+            z-index: 20;
+            background-image:
+                linear-gradient(#fff 0%, #fff 100%),
+                linear-gradient(#fff 0%, #fff 100%);
+            background-image:
+                linear-gradient(to bottom, transparent 38%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.7) 56%, transparent 56%),
+                linear-gradient(to right,  transparent 38%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.7) 56%, transparent 56%);
+        }
+
+        /* ═══════════════════════════════════════════
+           PÁGINAS INTERNAS
+        ═══════════════════════════════════════════ */
+        .pagina {
+            flex: 1;
+            background: var(--creme);
+            padding: 28px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .pagina-esquerda {
+            border-radius: 10px 2px 2px 10px;
+            margin-right: 4px;
+            /* Sombra interna — página esquerda mais escura na lombada */
+            box-shadow: inset -12px 0 20px rgba(0,0,0,0.06);
+        }
+
+        .pagina-direita {
+            border-radius: 2px 10px 10px 2px;
+            margin-left: 4px;
+            box-shadow: inset 12px 0 20px rgba(0,0,0,0.04);
+        }
+
+        /* Padrão de fundo sutil nas páginas */
+        .pagina::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 27px,
+                rgba(62,42,20,0.04) 28px
+            );
+            pointer-events: none;
+        }
+
+        /* ── Etiqueta de lado da página ── */
+        .etiqueta-pagina {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: -4px;
+        }
+
+        .etiqueta-pagina .tag {
+            font-family: var(--fonte-corpo);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .tag-adulto {
+            background: var(--azul);
+            color: var(--dourado-claro);
+        }
+
+        .tag-crianca {
+            background: var(--verde-agua);
+            color: #fff;
+        }
+
+        .etiqueta-pagina .titulo-episodio {
+            font-family: var(--fonte-adulto);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--marrom-mid);
+            font-style: italic;
+        }
+
+        /* ── Cabeçalho de série ── */
+        .cabecalho-serie {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--dourado);
+            padding-bottom: 10px;
+        }
+
+        .cabecalho-serie .marca {
+            font-family: var(--fonte-corpo);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--azul);
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .cabecalho-serie .num-pagina {
+            font-family: var(--fonte-corpo);
+            font-size: 10px;
+            color: var(--dourado);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ── Moldura de imagem ── */
+        .moldura-imagem {
+            background: #fff8ee;
+            border-radius: var(--r-bloco);
+            padding: 8px;
+            box-shadow:
+                0 3px 10px rgba(62,42,20,0.12),
+                0 0 0 1px rgba(196,154,69,0.25);
+            overflow: hidden;
+        }
+
+        .moldura-imagem img {
+            width: 100%; height: auto;
+            border-radius: 14px 2px 14px 2px;
+            display: block;
+        }
+
+        /* Placeholder com proporção definida */
+        .img-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--creme-escuro) 0%, rgba(196,154,69,0.15) 100%);
+            border-radius: 14px 2px 14px 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .img-placeholder .ico { font-size: 28px; opacity: 0.35; }
+        .img-placeholder .desc {
+            font-family: var(--fonte-corpo);
+            font-size: 11px;
+            color: var(--marrom-mid);
+            opacity: 0.55;
+            font-style: italic;
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        /* ── Texto adulto ── */
+        .texto-adulto {
+            font-family: var(--fonte-adulto);
+            font-size: 16px;
+            line-height: 1.85;
+            color: var(--marrom);
+            text-align: justify;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.5);
+            border-radius: var(--r-bloco);
+            border-left: 4px solid var(--dourado);
+            position: relative;
+        }
+
+        /* Aspas decorativas */
+        .texto-adulto::before {
+            content: '\201C';
+            position: absolute;
+            top: -4px;
+            left: 8px;
+            font-size: 48px;
+            color: var(--dourado);
+            opacity: 0.25;
+            font-family: var(--fonte-adulto);
+            line-height: 1;
+        }
+
+        /* ── Versículo integrado na página adulto ── */
+        .versiculo-inline {
+            font-family: var(--fonte-adulto);
+            font-size: 13.5px;
+            font-style: italic;
+            color: var(--azul);
+            text-align: center;
+            background: rgba(26,53,53,0.06);
+            border-radius: var(--r-bloco);
+            padding: 10px 16px;
+            border-top: 2px solid var(--dourado);
+            border-bottom: 2px solid var(--dourado);
+        }
+
+        .versiculo-inline .ref {
+            display: block;
+            font-family: var(--fonte-corpo);
+            font-size: 11px;
+            font-weight: 700;
+            font-style: normal;
+            color: var(--dourado);
+            letter-spacing: 1px;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        /* ═══════════════════════════════════════════
+           PÁGINA DA CRIANÇA
+        ═══════════════════════════════════════════ */
+
+        /* Frase âncora */
+        .frase-crianca {
+            font-family: var(--fonte-crianca);
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--azul);
+            text-align: center;
+            line-height: 1.2;
+            padding: 16px 12px 10px;
+            background: rgba(74,124,111,0.08);
+            border-radius: var(--r-infantil);
+            border-bottom: 4px solid var(--verde-agua);
+            box-shadow: 0 3px 0 rgba(74,124,111,0.15);
+        }
+
+        /* Pergunta do dia */
+        .pergunta-dia {
+            background: var(--rosa-suave);
+            border-radius: var(--r-infantil);
+            padding: 14px 18px;
+            border-left: 5px solid var(--dourado);
+        }
+
+        .pergunta-dia .label {
+            font-family: var(--fonte-crianca);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--dourado);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pergunta-dia .texto {
+            font-family: var(--fonte-crianca);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--marrom);
+            line-height: 1.4;
+        }
+
+        /* Atividade / espaço para desenhar */
+        .atividade {
+            border: 2.5px dashed var(--dourado);
+            border-radius: var(--r-infantil);
+            padding: 14px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.4);
+        }
+
+        .atividade .label-atividade {
+            font-family: var(--fonte-crianca);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--verde-agua);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .atividade .instrucao {
+            font-family: var(--fonte-crianca);
+            font-size: 16px;
+            color: var(--marrom-mid);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Oração participativa */
+        .oracao-participativa {
+            background: var(--azul);
+            border-radius: var(--r-infantil);
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .oracao-participativa .titulo-oracao {
+            font-family: var(--fonte-crianca);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dourado-claro);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .oracao-participativa .titulo-oracao::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--dourado-claro);
+            opacity: 0.5;
+        }
+
+        .oracao-participativa .texto-oracao {
+            font-family: var(--fonte-adulto);
+            font-size: 16px;
+            font-style: italic;
+            color: #fff;
+            line-height: 1.7;
+        }
+
+        .oracao-participativa .completar {
+            border-bottom: 1.5px solid rgba(255,255,255,0.4);
+            display: inline-block;
+            min-width: 100px;
+            margin: 0 4px;
+        }
+
+        .oracao-participativa .oracao-amen {
+            font-family: var(--fonte-adulto);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dourado-claro);
+            text-align: right;
+            letter-spacing: 1px;
+        }
+
+        /* ── Lição prática (página adulto) ── */
+        .licao-pratica {
+            background: rgba(26,53,53,0.06);
+            border-left: 4px solid var(--azul-claro);
+            padding: 12px 16px;
+            border-radius: 0 var(--r-infantil) var(--r-infantil) 0;
+            font-family: var(--fonte-adulto);
+            font-size: 14px;
+            color: var(--marrom);
+            line-height: 1.7;
+        }
+
+        .licao-pratica strong {
+            font-family: var(--fonte-corpo);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--azul);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ── Rodapé da página ── */
+        .rodape-pagina {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(196,154,69,0.35);
+        }
+
+        .rodape-pagina .serie-mini {
+            font-family: var(--fonte-corpo);
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--dourado);
+            opacity: 0.6;
+            text-transform: uppercase;
+        }
+
+        .rodape-pagina .num {
+            font-family: var(--fonte-corpo);
+            font-size: 10px;
+            color: var(--marrom-mid);
+            opacity: 0.5;
+        }
+
+        /* ═══════════════════════════════════════════
+           CONTRACAPA
+        ═══════════════════════════════════════════ */
+        .contracapa {
+            width: 100%;
+            max-width: 520px;
+            background: var(--capa-fundo);
+            border-radius: var(--r-livro);
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.6),
+                0 0 0 2px rgba(196,154,69,0.3),
+                inset 0 0 40px rgba(0,0,0,0.4);
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contracapa::after {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(196,154,69,0.2);
+            border-radius: calc(var(--r-livro) - 4px);
+            pointer-events: none;
+        }
+
+        .contracapa .titulo-secao {
+            font-family: var(--fonte-corpo);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--dourado);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contracapa h3 {
+            font-family: var(--fonte-adulto);
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+        }
+
+        .proximos-episodios {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ep-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(196,154,69,0.15);
+            transition: background 0.2s;
+        }
+
+        .ep-item:hover { background: rgba(255,255,255,0.08); }
+
+        .ep-num {
+            font-family: var(--fonte-crianca);
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--dourado);
+            opacity: 0.5;
+            min-width: 36px;
+            text-align: center;
+        }
+
+        .ep-info .ep-titulo {
+            font-family: var(--fonte-adulto);
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .ep-info .ep-subtitulo {
+            font-family: var(--fonte-corpo);
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 1px;
+        }
+
+        .ep-item.atual .ep-num { opacity: 1; }
+        .ep-item.atual { border-color: rgba(196,154,69,0.4); background: rgba(196,154,69,0.07); }
+        .ep-item.atual .ep-titulo { color: var(--dourado-claro); }
+
+        .contracapa-versao {
+            font-family: var(--fonte-corpo);
+            font-size: 10px;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVO
+        ═══════════════════════════════════════════ */
+        @media screen and (max-width: 820px) {
+            .livro-spread {
+                flex-direction: column;
+                border-radius: 16px;
+            }
+            .pagina-esquerda,
+            .pagina-direita {
+                margin: 0;
+                border-radius: 12px;
+            }
+            .livro-spread::before { display: none; }
+            .frase-crianca { font-size: 26px; }
+        }
+
+        @media screen and (max-width: 480px) {
+            body { padding: 20px 12px 40px; gap: 36px; }
+            .frase-crianca { font-size: 22px; }
+            .texto-adulto { font-size: 15px; }
+        }
+
+        /* ═══════════════════════════════════════════
+           ANIMAÇÃO DE ENTRADA
+        ═══════════════════════════════════════════ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .capa,
+        .livro-spread,
+        .contracapa {
+            animation: fadeUp 0.7s ease both;
+        }
+        .livro-spread:nth-child(2) { animation-delay: 0.1s; }
+        .livro-spread:nth-child(3) { animation-delay: 0.2s; }
+        .livro-spread:nth-child(4) { animation-delay: 0.3s; }
+        .contracapa               { animation-delay: 0.4s; }
+
+        /* ═══════════════════════════════════════════
+           PRINT
+        ═══════════════════════════════════════════ */
+        @media print {
+            body { background: white; padding: 0; gap: 0; }
+            .capa, .contracapa { page-break-after: always; box-shadow: none; }
+            .livro-spread {
+                page-break-after: always;
+                box-shadow: none;
+                background: #d9cbb8;
+            }
+            .pagina { background: white; box-shadow: none; }
+            .pagina::before { display: none; }
+            .livro-spread::before, .livro-spread::after { display: none; }
+            .oracao-participativa { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .frase-crianca, .pergunta-dia, .atividade {
+                break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- PÁGINA 1: CAPA -->
-<div class="page">
-  <div class="page-header">✧  PALAVRA VIVA  ✧</div>
-  <div class="illustration">
-    <i>📖🐑✨</i>
-    <span>🖼️ ILUSTRAÇÃO: Um pai e seu filho lendo a Bíblia abraçados, com luz suave e anjos ao fundo</span>
-  </div>
-  <h1>Reconecte-se com seu filho<br>através da Bíblia</h1>
-  <p style="text-align: center; font-size: 1.2rem; margin: 0.6cm 0;">7 histórias bíblicas interativas para ler, aprender e orar juntos</p>
-  <div class="bible-verse" style="margin-top: 0.8cm;">“Ensina a criança no caminho em que deve andar” – Provérbios 22:6</div>
-  <div class="footer-note-book">✨ Um livro para momentos eternos em família ✨</div>
-  <div class="page-number">1</div>
+<!-- ══════════════════════════════════════════════
+     CAPA
+══════════════════════════════════════════════ -->
+<div class="capa">
+    <span class="capa-serie">Episódio 03 · Devocional Familiar</span>
+
+    <div class="capa-simbolo">
+        <!-- Pomba estilizada em SVG -->
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" stroke="#c49a45" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.5"/>
+            <circle cx="40" cy="40" r="30" stroke="#c49a45" stroke-width="0.8" opacity="0.3"/>
+            <!-- corpo da pomba -->
+            <path d="M24 44 Q30 30 48 32 Q58 33 60 42 Q62 52 50 56 Q36 60 26 52 Z"
+                  fill="#c49a45" opacity="0.9"/>
+            <!-- asa -->
+            <path d="M30 38 Q38 26 52 30 Q44 36 40 44 Z"
+                  fill="#e8c97a" opacity="0.8"/>
+            <!-- cabeça -->
+            <circle cx="58" cy="38" r="7" fill="#c49a45" opacity="0.9"/>
+            <!-- bico -->
+            <path d="M64 37 L70 39 L64 41 Z" fill="#e8c97a"/>
+            <!-- ramo de oliveira -->
+            <path d="M28 56 Q24 62 22 66" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="24" cy="60" rx="4" ry="2.5" fill="#4a7c6f" opacity="0.8" transform="rotate(-30 24 60)"/>
+            <ellipse cx="21" cy="64" rx="3" ry="2"   fill="#4a7c6f" opacity="0.8" transform="rotate(-50 21 64)"/>
+        </svg>
+        <div class="capa-titulo-serie">Minuto com Deus</div>
+    </div>
+
+    <div class="capa-divisor"></div>
+
+    <!-- Imagem principal da capa -->
+    <div class="capa-imagem">
+        <!-- <img src="capa-arca-noe.jpg" alt="A Arca de Noé"> -->
+        <span class="img-icon">🌊</span>
+        <span class="img-label"><strong>Imagem da capa</strong><br>
+        A arca flutuando em águas calmas, grande arco-íris ao fundo, pomba branca com ramo de oliveira. Estilo aquarela, luz dourada e textura artesanal.<br><em>(substituir pela imagem gerada)</em></span>
+    </div>
+
+    <div class="capa-titulo-historia">A Arca de Noé</div>
+    <span class="capa-episodio">Gênesis 6 – 9 · Para famílias</span>
 </div>
 
-<!-- PÁGINA 2: GUIA PARA PAIS -->
-<div class="page">
-  <div class="page-header">✧  GUIA DE RECONEXÃO  ✧</div>
-  <h2>📘 Como usar este livro</h2>
-  <p>Querido pai, querida mãe, este livro foi desenhado para ser lido a duas vozes: você conduz a narrativa, e seu filho participa ativamente. Cada história ocupa duas páginas completas, com espaços para ilustrações lindas, palavras que a criança pode ler sozinha e um momento de oração. Não tenha pressa. Deixe que seu pequeno aponte as figuras, repita os versículos e faça perguntas.</p>
-  <p><strong>Por que isso funciona?</strong> A leitura compartilhada fortalece o vínculo emocional e também acelera a alfabetização de forma natural, sem cobrança. Quando a criança repete frases bíblicas ou completa palavras, ela se sente protagonista da história de Deus.</p>
-  <div class="illustration">
-    <i>👨‍👧📖💛</i>
-    <span>🖼️ Mãe e filho lendo juntos, rodeados de almofadas e um versículo na parede</span>
-  </div>
-  <div class="parent-tip">
-    💡 DICA DE OURO: Antes de cada história, diga: “Vamos abrir o tesouro da Palavra de Deus”. Isso cria um ritual sagrado de reconexão. Leia com voz suave e faça pausas para que a criança interaja.
-  </div>
-  <div class="page-number">2</div>
+
+<!-- ══════════════════════════════════════════════
+     SPREAD 1: Promessa e Construção
+══════════════════════════════════════════════ -->
+<div class="livro-spread">
+
+    <!-- PÁGINA 1 — ADULTO: Promessa e Construção -->
+    <div class="pagina pagina-esquerda">
+        <div class="etiqueta-pagina">
+            <span class="tag tag-adulto">Leia em voz alta</span>
+            <span class="titulo-episodio">A Promessa e a Construção</span>
+        </div>
+
+        <div class="cabecalho-serie">
+            <span class="marca">Minuto com Deus</span>
+            <span class="num-pagina">01</span>
+        </div>
+
+        <!-- Foto 1A: Noé construindo a arca -->
+        <div class="moldura-imagem">
+            <!-- <img src="1a-noe-construindo.jpg" alt="Noé construindo a arca"> -->
+            <div class="img-placeholder">
+                <span class="ico">🪵</span>
+                <span class="desc"><strong>Ilustração 1A · 16:9</strong><br>
+                Noé construindo a arca com ferramentas simples, sorriso sereno, luz dourada e tábuas de madeira. Ao fundo, colinas verdes. Aquarela minimalista, cores terrosas e quentes, textura artesanal.</span>
+            </div>
+        </div>
+
+        <p class="texto-adulto">
+            Há muito tempo, Deus olhou para a terra e viu que as pessoas haviam se esquecido do Seu amor. Mas havia um homem bom chamado Noé, que ouvia a voz de Deus com o coração. Deus fez uma promessa a Noé e pediu que ele construísse uma grande arca — um barco enorme, forte e seguro — para proteger sua família. Mesmo sem entender tudo, Noé confiou. E, com paciência e fé, foi juntando cada tábua de madeira, construindo um lugar de refúgio. Assim é o cuidado de Deus: Ele sempre prepara um caminho de salvação para quem O ama.
+        </p>
+
+        <div class="versiculo-inline">
+            "Noé fez tudo conforme Deus lhe havia ordenado."
+            <span class="ref">— Gênesis 6:22</span>
+        </div>
+
+        <!-- Foto 1B: Deus falando com Noé -->
+        <div class="moldura-imagem">
+            <!-- <img src="1b-deus-noe.jpg" alt="Deus fala com Noé"> -->
+            <div class="img-placeholder">
+                <span class="ico">✨</span>
+                <span class="desc"><strong>Ilustração 1B · 16:9</strong><br>
+                Deus (luz suave e nuvens douradas) falando com Noé em oração. Noé ajoelhado, expressão de confiança e paz. Cores creme, marrom e dourado suave. Atmosfera celestial e terna.</span>
+            </div>
+        </div>
+
+        <div class="licao-pratica">
+            <strong>Aplicação para os pais</strong>
+            Obedecer a Deus nem sempre faz sentido para o mundo ao redor — assim como foi para Noé. Converse com seus filhos sobre uma situação em que confiaram em Deus mesmo sem entender o resultado.
+        </div>
+
+        <div class="rodape-pagina">
+            <span class="serie-mini">Minuto com Deus</span>
+            <span class="num">Página 1</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2 — CRIANÇA: Promessa e Construção -->
+    <div class="pagina pagina-direita">
+        <div class="etiqueta-pagina">
+            <span class="tag tag-crianca">Momento da criança</span>
+            <span class="titulo-episodio">Noé obedeceu a Deus!</span>
+        </div>
+
+        <div class="cabecalho-serie">
+            <span class="marca">Minuto com Deus</span>
+            <span class="num-pagina">02</span>
+        </div>
+
+        <!-- Foto 2A: Animais entrando na arca -->
+        <div class="moldura-imagem">
+            <!-- <img src="2a-animais.jpg" alt="Animais entrando na arca"> -->
+            <div class="img-placeholder">
+                <span class="ico">🦒🐘</span>
+                <span class="desc"><strong>Ilustração 2A · 16:9</strong><br>
+                Fila de animais entrando na arca, dois a dois, com expressões dóceis. Girafas, elefantes, leões, coelhos e pássaros sob céu pastel. Aquarela suave, luz quente e textura artesanal.</span>
+            </div>
+        </div>
+
+        <p class="frase-crianca">Deus cuida de mim<br>e da minha família</p>
+
+        <div class="pergunta-dia">
+            <span class="label">🌟 Pergunta do dia</span>
+            <p class="texto">Você já fez algo difícil porque alguém que você ama pediu? Noé fez isso com Deus. Você confia em Deus assim também?</p>
+        </div>
+
+        <div class="atividade">
+            <span class="label-atividade">✏️ Atividade</span>
+            <p class="instrucao">Desenhe a arca de Noé com os seus animais favoritos dentro dela!</p>
+        </div>
+
+        <div class="oracao-participativa">
+            <span class="titulo-oracao">Nossa oração</span>
+            <p class="texto-oracao">
+                Senhor, obrigado por cuidar de mim e da minha família.<br>
+                Ajuda-me a confiar em Ti como Noé confiou.<br>
+                Hoje eu quero te agradecer por: <span class="completar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </p>
+            <span class="oracao-amen">Amém.</span>
+        </div>
+
+        <div class="rodape-pagina">
+            <span class="serie-mini">Episódio 03 · Gênesis 6–9</span>
+            <span class="num">Página 2</span>
+        </div>
+    </div>
 </div>
 
-<!-- ===================== HISTÓRIA 1: A ARCA DE NOÉ ===================== -->
-<!-- PÁGINA 3 (primeira parte) -->
-<div class="page">
-  <div class="page-header">✦ HISTÓRIA 1 ✦</div>
-  <div class="story-title">⛵ A Arca de Noé – obediência que salva</div>
-  <div class="illustration">
-    <i>🪵🐘🕊️</i>
-    <span>🖼️ Noé construindo a arca, casal de animais (elefante, girafa, pomba) se aproximando</span>
-  </div>
-  <p>Há muitos, muitos anos, a terra estava cheia de brigas e maldade. O coração de Deus ficou triste. Mas havia um homem muito especial: seu nome era Noé. Ele andava com Deus e obedecia de coração. Um dia, Deus disse a Noé: “Faça uma arca enorme, de madeira resistente, e espalhe betume por dentro e por fora. Eu farei chover durante quarenta dias e quarenta noites, mas dentro da arca você e sua família estarão seguros”.</p>
-  <p>Noé não duvidou. Ele confiou e começou a construir bem no meio do deserto. Vizinhos zombavam, riam e diziam: “Cadê a chuva, seu louco?” Mas Noé continuava trabalhando com fé. Levou muitos anos, e ele também pregava: “Voltem-se para Deus, pois o dilúvio virá!”. Quando a arca ficou pronta, Deus mandou entrar Noé, sua esposa, seus três filhos e as esposas deles. Além disso, animais de toda espécie: limpos e impuros, dois a dois.</p>
-  <div class="child-read">
-    🧒 AGORA É SUA VEZ, CRIANÇA! Leia essas palavras especiais com a ajuda do papai ou da mamãe:<br>
-    <strong>“ARCA • CHUVA • POMBA • ARCO-ÍRIS • ALIANÇA”</strong>
-  </div>
-  <div class="page-number">3</div>
+
+<!-- ══════════════════════════════════════════════
+     SPREAD 2: Animais e Segurança
+══════════════════════════════════════════════ -->
+<div class="livro-spread">
+
+    <!-- PÁGINA 3 — ADULTO: O Cuidado de Deus e a segurança na arca -->
+    <div class="pagina pagina-esquerda">
+        <div class="etiqueta-pagina">
+            <span class="tag tag-adulto">Leia em voz alta</span>
+            <span class="titulo-episodio">O Cuidado de Deus</span>
+        </div>
+
+        <div class="cabecalho-serie">
+            <span class="marca">Minuto com Deus</span>
+            <span class="num-pagina">03</span>
+        </div>
+
+        <!-- Foto 3A: Família dentro da arca -->
+        <div class="moldura-imagem">
+            <!-- <img src="3a-familia-arca.jpg" alt="Família de Noé na arca"> -->
+            <div class="img-placeholder">
+                <span class="ico">🕯️</span>
+                <span class="desc"><strong>Ilustração 3A · 16:9</strong><br>
+                Interior da arca: família de Noé reunida ao redor de uma lamparina, luz quente e acolhedora. Animais descansando (ovelhas, pássaros). Sensação de abrigo e paz. Aquarela, tons dourados.</span>
+            </div>
+        </div>
+
+        <p class="texto-adulto">
+            Quando a arca ficou pronta, um milagre silencioso começou. De todas as florestas, campos e montanhas, os animais vieram, dois a dois, guiados pela mão amorosa de Deus. Não havia medo, apenas confiança. Em breve o céu se fechou e a chuva veio forte, mas dentro da arca reinava uma paz inexplicável. Noé e sua família estavam seguros; os animais repousavam calmos. O som da chuva no telhado parecia uma canção de ninar, lembrando que Deus estava no controle. Assim é o cuidado de Deus: Ele nos abriga mesmo nas maiores tempestades.
+        </p>
+
+        <div class="versiculo-inline">
+            "O Senhor é o meu pastor; nada me faltará."
+            <span class="ref">— Salmos 23:1</span>
+        </div>
+
+        <!-- Foto 3B: Arca na chuva -->
+        <div class="moldura-imagem">
+            <!-- <img src="3b-arca-chuva.jpg" alt="Arca na chuva"> -->
+            <div class="img-placeholder">
+                <span class="ico">🌧️</span>
+                <span class="desc"><strong>Ilustração 3B · 16:9</strong><br>
+                Arca flutuando sobre as águas sob chuva suave. Janelas iluminadas com brilho dourado contrastando com o cinza. No horizonte, prenúncio de luz. Composição minimalista, textura artesanal.</span>
+            </div>
+        </div>
+
+        <div class="licao-pratica">
+            <strong>Aplicação para os pais</strong>
+            Quando as tempestades chegam — medos, incertezas, dificuldades — Deus é o nosso abrigo. Converse com seus filhos sobre uma "tempestade" recente em que Deus cuidou da família.
+        </div>
+
+        <div class="rodape-pagina">
+            <span class="serie-mini">Minuto com Deus</span>
+            <span class="num">Página 3</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4 — CRIANÇA: Segurança -->
+    <div class="pagina pagina-direita">
+        <div class="etiqueta-pagina">
+            <span class="tag tag-crianca">Momento da criança</span>
+            <span class="titulo-episodio">Seguros com Deus!</span>
+        </div>
+
+        <div class="cabecalho-serie">
+            <span class="marca">Minuto com Deus</span>
+            <span class="num-pagina">04</span>
+        </div>
+
+        <!-- Foto 4A: Passarinhos na rampa -->
+        <div class="moldura-imagem">
+            <!-- <img src="4a-passarinhos.jpg" alt="Passarinhos entrando na arca"> -->
+            <div class="img-placeholder">
+                <span class="ico">🐦</span>
+                <span class="desc"><strong>Ilustração 4A · 16:9</strong><br>
+                Close de um casal de passarinhos azuis entrando na arca, rampa de madeira ao fundo. Frestas de luz dourada da tarde. Sensação de paz e delicadeza. Tons pastéis e traços minimalistas.</span>
+            </div>
+        </div>
+
+        <p class="frase-crianca">Com Deus eu me sinto<br>seguro e protegido</p>
+
+        <div class="pergunta-dia">
+            <span class="label">🌟 Pergunta do dia</span>
+            <p class="texto">Quando você sente medo, o que você faz? Sabia que você pode falar com Deus quando estiver com medo?</p>
+        </div>
+
+        <div class="atividade">
+            <span class="label-atividade">✏️ Atividade</span>
+            <p class="instrucao">Desenhe ou escreva algo que lhe causa medo. Depois, ore entregando isso a Deus!</p>
+        </div>
+
+        <div class="oracao-participativa">
+            <span class="titulo-oracao">Nossa oração</span>
+            <p class="texto-oracao">
+                Deus, quando eu sentir medo, me lembra que Tu estás comigo.<br>
+                Obrigado por ser o meu <span class="completar">refúgio</span> e o meu <span class="completar">fortaleza</span>.
+            </p>
+            <span class="oracao-amen">Amém.</span>
+        </div>
+
+        <div class="rodape-pagina">
+            <span class="serie-mini">Episódio 03 · Gênesis 6–9</span>
+            <span class="num">Página 4</span>
+        </div>
+    </div>
 </div>
 
-<!-- PÁGINA 4 (segunda parte da história 1) -->
-<div class="page">
-  <div class="illustration">
-    <i>🌈🐦⛰️</i>
-    <span>🖼️ A arca flutuando sobre as águas, uma pomba com ramo de oliveira e o lindo arco-íris</span>
-  </div>
-  <p>Assim que todos entraram, o próprio Deus fechou a porta da arca. Sete dias depois, começou a chover. E choveu, choveu, choveu... Por quarenta dias e quarenta noites, a água subiu, cobriu montanhas e até as árvores mais altas. Mas a arca flutuava leve, segura nas mãos de Deus. Noé e sua família oravam, cuidavam dos animais e esperavam no Senhor.</p>
-  <p>Depois de muito tempo, as águas foram baixando. A arca parou sobre os montes de Ararate. Noé soltou um corvo e depois uma pomba. Na primeira vez, a pomba voltou. Sete dias depois, ele a soltou outra vez, e ela trouxe no bico uma folha nova de oliveira! Isso significava que a terra estava secando. Noé esperou mais um pouco e, por fim, Deus disse: “Saia da arca, você e sua família, e também todos os animais”.</p>
-  <p>Noé fez um altar e agradeceu a Deus. O Senhor se agradou e fez uma promessa: “Nunca mais destruirei toda criatura com as águas. Ponho o meu arco nas nuvens como sinal da aliança entre mim e a terra”. Toda vez que você ver um arco-íris, lembre-se: Deus é fiel e cumpre suas promessas. Ele guarda quem obedece com alegria.</p>
-  <div class="bible-verse">📖 Gênesis 9:13 – “O meu arco tenho posto nas nuvens; será por sinal da aliança entre mim e a terra”.</div>
-  <div class="prayer">🙏 ORAÇÃO PARA REZAR JUNTOS: “Pai amoroso, obrigado por nos protegeres como fizeste com Noé. Ajuda-nos a obedecer sempre, mesmo quando os outros zombam. Queremos ser justos e cheios de fé. Amém.”</div>
-  <div class="parent-tip">❓ PERGUNTE À CRIANÇA: “O que você faria se Deus te pedisse algo difícil? Assim como Noé, podemos confiar que Deus sabe o que é melhor.”</div>
-  <div class="page-number">4</div>
+
+<!-- ══════════════════════════════════════════════
+     SPREAD 3: Arco-Íris e Aliança
+══════════════════════════════════════════════ -->
+<div class="livro-spread">
+
+    <!-- PÁGINA 5 — ADULTO: Arco-Íris e Aliança -->
+    <div class="pagina pagina-esquerda">
+        <div class="etiqueta-pagina">
+            <span class="tag tag-adulto">Leia em voz alta</span>
+            <span class="titulo-episodio">A Nova Aliança</span>
+        </div>
+
+        <div class="cabecalho-serie">
+            <span class="marca">Minuto com Deus</span>
+            <span class="num-pagina">05</span>
+        </div>
+
+        <!-- Foto 5A: Família sob o arco-íris -->
+        <div class="moldura-imagem">
+            <!-- <img src="5a-arco-iris.jpg" alt="Saída da arca e arco-íris"> -->
+            <div class="img-placeholder">
+                <span class="ico">🌈</span>
+                <span class="desc"><strong>Ilustração 5A · 16:9</strong><br>
+                Noé e família saindo da arca, contemplando imenso arco-íris. Animais saindo alegremente, paisagem renovada com gotas de orvalho. Aquarela, luz dourada do amanhecer, expressões de gratidão.</span>
+            </div>
+        </div>
+
+        <p class="texto-adulto">
+            Depois de muitos dias, a chuva cessou e o sol voltou a brilhar. Foi então que Deus pintou no céu o mais lindo arco-íris — um sinal da Sua aliança de amor com Noé e com toda a humanidade. Deus prometeu nunca mais destruir a terra com dilúvio. Cada cor do arco-íris nos lembra que Deus é fiel, que Suas promessas são eternas e que o Seu cuidado nunca falha. Quando você vir um arco-íris, lembre-se: Deus sempre cumpre o que prometeu.
+        </p>
+
+        <div class="versiculo-inline">
+            "O meu arco tenho posto nas nuvens; este será por sinal da aliança entre mim e a terra."
+            <span class="ref">— Gênesis 9:13</span>
+        </div>
+
+        <!-- Foto 5B: Pombas e arco-íris -->
+        <div class="moldura-imagem">
+            <!-- <img src="5b-pomba-arco.jpg" alt="Pomba e arco-íris"> -->
+            <div class="img-placeholder">
+                <span class="ico">🕊️</span>
+                <span class="desc"><strong>Ilustração 5B · 16:9</strong><br>
+                Arco-íris suave sobre paisagem tranquila, arca ao longe. Pombas brancas voando. Figura (criança) de braços abertos em gratidão. Composição vertical, aquarela, textura artesanal.</span>
+            </div>
+        </div>
+
+        <div class="licao-pratica">
+            <strong>Aplicação para os pais</strong>
+            Da próxima vez que virem um arco-íris juntos, parem e lembrem: "Deus cumpriu cada promessa que fez a Noé. Ele cumprirá as promessas que tem para a nossa família também."
+        </div>
+
+        <div class="rodape-pagina">
+            <span class="serie-mini">Minuto com Deus</span>
+            <span class="num">Página 5</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 6 — CRIANÇA: Aliança e Gratidão -->
+    <div class="pagina pagina-direita">
+        <div class="etiqueta-pagina">
+            <span class="tag tag-crianca">Momento da criança</span>
+            <span class="titulo-episodio">Deus cumpre as promessas!</span>
+        </div>
+
+        <div class="cabecalho-serie">
+            <span class="marca">Minuto com Deus</span>
+            <span class="num-pagina">06</span>
+        </div>
+
+        <!-- Foto 6A: Criança admirando arco-íris -->
+        <div class="moldura-imagem">
+            <!-- <img src="6a-crianca-arco.jpg" alt="Criança e arco-íris"> -->
+            <div class="img-placeholder">
+                <span class="ico">🌤️</span>
+                <span class="desc"><strong>Ilustração 6A · 16:9</strong><br>
+                Criança de braços abertos sob o arco-íris, com expressão de alegria e gratidão. Pombas brancas, luz dourada. Aquarela, textura artesanal e traços dóceis.</span>
+            </div>
+        </div>
+
+        <p class="frase-crianca">O arco-íris me lembra<br>que Deus me ama!</p>
+
+        <div class="pergunta-dia">
+            <span class="label">🌟 Pergunta do dia</span>
+            <p class="texto">Deus fez uma promessa para Noé e cumpriu! Você conhece alguma promessa que Deus fez para você? Pergunte ao seu pai ou mãe!</p>
+        </div>
+
+        <div class="atividade">
+            <span class="label-atividade">✏️ Atividade</span>
+            <p class="instrucao">Pinte um arco-íris com todas as cores que você quiser! Cada cor é uma promessa de Deus para você.</p>
+        </div>
+
+        <div class="oracao-participativa">
+            <span class="titulo-oracao">Nossa oração</span>
+            <p class="texto-oracao">
+                Querido Deus, obrigado pelo arco-íris e pelas Suas promessas.<br>
+                Hoje eu estou feliz porque <span class="completar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.<br>
+                Eu te amo, Senhor!
+            </p>
+            <span class="oracao-amen">Amém.</span>
+        </div>
+
+        <div class="rodape-pagina">
+            <span class="serie-mini">Episódio 03 · Gênesis 6–9</span>
+            <span class="num">Página 6</span>
+        </div>
+    </div>
 </div>
 
-<!-- ===================== HISTÓRIA 2: DAVI E GOLIAS ===================== -->
-<!-- PÁGINA 5 -->
-<div class="page">
-  <div class="page-header">✦ HISTÓRIA 2 ✦</div>
-  <div class="story-title">⚔️ Davi e Golias – a fé vence gigantes</div>
-  <div class="illustration">
-    <i>🪨⚔️👑</i>
-    <span>🖼️ Davi pequeno com sua funda e cinco pedras lisas, e o Gigante Golias enorme com armadura</span>
-  </div>
-  <p>O exército de Israel estava acampado num vale, e do outro lado estavam os filisteus, inimigos ferozes. Todos os dias, um guerreiro gigante chamado Golias saía e gritava: “Escolham um homem para lutar comigo! Se ele me vencer, seremos seus escravos. Mas se eu vencer, vocês serão nossos!”. Golias media mais de três metros, usava uma armadura pesada de bronze, e o cabo de sua lança era grosso como um tear. Ninguém em Israel tinha coragem. Por quarenta dias, o gigante zombou do Deus Vivo.</p>
-  <p>Davi era apenas um jovem pastor, filho de Jessé. Seus irmãos mais velhos estavam no exército, e Davi levava comida para eles. Quando ouviu a afronta de Golias, seu coração ardeu: “Quem é esse incircunciso para desafiar o exército do Deus vivo?”. Ele foi falar com o rei Saul: “Ninguém temas! Teu servo matou o leão e o urso quando atacavam minhas ovelhas. O mesmo Deus me livrará das mãos desse filisteu”.</p>
-  <div class="child-read">
-    🔥 REPITA COM FÉ (a criança repete depois do adulto):<br>
-    “O Senhor é meu pastor, nada me faltará!” – Salmo 23:1
-  </div>
-  <div class="page-number">5</div>
-</div>
 
-<!-- PÁGINA 6 (continuação) -->
-<div class="page">
-  <div class="illustration">
-    <i>🥌👑🎶</i>
-    <span>🖼️ Davi lançando a pedra contra Golias, que cai, e o anjo do Senhor ao fundo</span>
-  </div>
-  <p>Saul permitiu, e Davi recusou a armadura pesada do rei – ele não estava acostumado. Pegou seu cajado, escolheu cinco pedras lisas no ribeiro, colocou-as na sua bolsa de pastor e, com a funda na mão, aproximou-se do gigante. Golias riu com desprezo: “Sou um cão, para que venhas a mim com paus?”. Davi respondeu com toda a coragem: “Tu vens a mim com espada, lança e escudo, mas eu venho em nome do Senhor dos Exércitos, o Deus de Israel. Hoje mesmo o Senhor te entregará nas minhas mãos”.</p>
-  <p>Davi correu em direção a Golias, tirou uma pedra da bolsa, colocou na funda e atirou com força. A pedra afundou na testa do gigante, e ele caiu com o rosto em terra. Davi não tinha espada, mas correu e pegou a espada de Golias e cortou sua cabeça. Os filisteus fugiram apavorados, e Israel venceu. O rei Dario ficou maravilhado e desde aquele dia, Davi se tornou um herói de fé.</p>
-  <p>Essa história nos ensina uma verdade linda: Deus não olha para o tamanho nem para a força; Ele olha para o coração. Os problemas podem parecer gigantes (medo, tristeza, dificuldade na escola), mas quando confiamos no Senhor, Ele nos dá vitória. Você também pode enfrentar os seus “gigantes” com a fé de Davi!</p>
-  <div class="bible-verse">📖 1 Samuel 17:47 – “A batalha é do Senhor”.</div>
-  <div class="prayer">🙏 ORAÇÃO: “Senhor Deus, aumenta a nossa fé como a de Davi. Ensina-nos a confiar em Ti contra qualquer gigante: medo do escuro, dificuldade para aprender ou tristeza. Dá-nos coragem. Amém.”</div>
-  <div class="parent-tip">💬 FAMÍLIA EM DIÁLOGO: “Qual é o seu ‘Golias’ hoje? Vamos orar e pedir a Deus que nos ajude a vencer.”</div>
-  <div class="page-number">6</div>
-</div>
+<!-- ══════════════════════════════════════════════
+     CONTRACAPA
+══════════════════════════════════════════════ -->
+<div class="contracapa">
+    <span class="titulo-secao">Coleção completa</span>
+    <h3>Mais histórias para o seu<br>Minuto com Deus</h3>
 
-<!-- ===================== HISTÓRIA 3: JONAS E O GRANDE PEIXE ===================== -->
-<!-- PÁGINA 7 -->
-<div class="page">
-  <div class="page-header">✦ HISTÓRIA 3 ✦</div>
-  <div class="story-title">🐋 Jonas – a segunda chance de Deus</div>
-  <div class="illustration">
-    <i>⛈️🌊🐟</i>
-    <span>🖼️ Tempestade violenta no mar, marinheiros assustados, e Jonas sendo lançado ao mar</span>
-  </div>
-  <p>A palavra do Senhor veio a Jonas, filho de Amitai, com uma missão: “Vá à grande cidade de Nínive e grite contra ela, porque a maldade do povo subiu até mim”. Jonas, porém, não gostou da ideia. Ele se levantou para fugir da presença de Deus. Desceu a Jope, encontrou um navio que ia para Társis, pagou a passagem e embarcou, achando que poderia se esconder do Todo-Poderoso.</p>
-  <p>Mas o Senhor mandou um vento fortíssimo sobre o mar, e houve uma tempestade tão violenta que o navio ameaçava se despedaçar. Os marinheiros, cheios de medo, clamavam cada um ao seu deus e jogavam as cargas ao mar para aliviar o barco. Jonas, porém, tinha descido ao porão e dormia profundamente, como se nada estivesse acontecendo. O capitão o acordou: “Como você dorme? Levante-se e clame ao seu Deus!”.</p>
-  <div class="child-read">
-    🎭 PARTICIPE FAZENDO OS SONS COM A BOCA:<br>
-    🌊 *PLIM* (Jonas cai na água) → 🐟 *NHAC* (peixe grande o engole)
-  </div>
-  <div class="page-number">7</div>
-</div>
+    <div class="proximos-episodios">
+        <div class="ep-item">
+            <span class="ep-num">01</span>
+            <div class="ep-info">
+                <div class="ep-titulo">A Criação do Mundo</div>
+                <div class="ep-subtitulo">Gênesis 1 · Em tudo Deus viu que era bom</div>
+            </div>
+        </div>
+        <div class="ep-item">
+            <span class="ep-num">02</span>
+            <div class="ep-info">
+                <div class="ep-titulo">Adão e Eva no Jardim</div>
+                <div class="ep-subtitulo">Gênesis 2–3 · A escolha e a graça</div>
+            </div>
+        </div>
+        <div class="ep-item atual">
+            <span class="ep-num">03</span>
+            <div class="ep-info">
+                <div class="ep-titulo">A Arca de Noé ✓</div>
+                <div class="ep-subtitulo">Gênesis 6–9 · Fé, cuidado e aliança</div>
+            </div>
+        </div>
+        <div class="ep-item">
+            <span class="ep-num">04</span>
+            <div class="ep-info">
+                <div class="ep-titulo">Abraão e a Promessa</div>
+                <div class="ep-subtitulo">Gênesis 12 · Sair sem saber para onde ir</div>
+            </div>
+        </div>
+        <div class="ep-item">
+            <span class="ep-num">05</span>
+            <div class="ep-info">
+                <div class="ep-titulo">José e o Sonho de Deus</div>
+                <div class="ep-subtitulo">Gênesis 37–45 · Deus transforma o sofrimento</div>
+            </div>
+        </div>
+    </div>
 
-<!-- PÁGINA 8 -->
-<div class="page">
-  <div class="illustration">
-    <i>🐋🏝️🙏</i>
-    <span>🖼️ Grande peixe vomitando Jonas na praia, céu azul e arco-íris</span>
-  </div>
-  <p>Os marinheiros lançaram sortes e a sorte caiu sobre Jonas. Ele confessou: “Sou hebreu, e temo ao Senhor Deus do céu, que fez o mar e a terra. Lançai-me ao mar, e a tempestade cessará”. Relutantes, eles o fizeram e imediatamente o mar se acalmou. Então o Senhor preparou um grande peixe para engolir Jonas. Três dias e três noites ele ficou dentro do ventre do peixe. Ali, no escuro, Jonas finalmente orou de verdade: “Clamei ao Senhor na minha angústia, e Ele me respondeu”. Arrependido, agradeceu a Deus.</p>
-  <p>O Senhor ordenou ao peixe, e ele vomitou Jonas na terra seca. Pela segunda vez, a voz de Deus veio: “Vai a Nínive e prega a mensagem que eu te digo”. Dessa vez, Jonas obedeceu. Andou pela cidade proclamando: “Ainda quarenta dias, e Nínive será destruída”. Os ninivitas creram em Deus, proclamaram jejum, se arrependeram dos seus maus caminhos. Deus, vendo o arrependimento, não trouxe o castigo. Jonas ficou bravo, mas o Senhor o ensinou sobre misericórdia. Essa história mostra que Deus sempre nos dá uma nova chance. Nunca é tarde para obedecer e voltar para Ele.</p>
-  <div class="bible-verse">📖 Jonas 2:7 – “Do fundo do abismo clamei, e Tu me ouviste”.</div>
-  <div class="prayer">🙏 ORAÇÃO: “Querido Deus, perdoe-nos pelas vezes que queremos fugir. Obrigado pela segunda chance, como deste a Jonas. Ajuda-nos a obedecer com alegria. Amém.”</div>
-  <div class="parent-tip">❤️ ATIVIDADE: Desenhe um grande peixe e escreva dentro: “Deus sempre me dá uma nova chance”. Cole na geladeira para lembrar.</div>
-  <div class="page-number">8</div>
-</div>
-
-<!-- ===================== HISTÓRIA 4: BOM SAMARITANO ===================== -->
-<!-- PÁGINA 9 -->
-<div class="page">
-  <div class="page-header">✦ HISTÓRIA 4 ✦</div>
-  <div class="story-title">🕊️ O Bom Samaritano – amor sem fronteiras</div>
-  <div class="illustration">
-    <i>🩸🛤️🤝</i>
-    <span>🖼️ Homem caído na estrada, sacerdote e levita passando longe, e o samaritano ajudando</span>
-  </div>
-  <p>Um dia, um homem descia de Jerusalém para Jericó e foi atacado por ladrões. Eles tiraram suas roupas, bateram nele e o deixaram quase morto à beira do caminho. Por acaso, um sacerdote passou por ali; quando viu o homem ferido, atravessou para o outro lado da estrada e seguiu seu caminho. Depois, um levita também passou e fez a mesma coisa: olhou de longe e passou de largo. As pessoas importantes não tiveram compaixão.</p>
-  <p>Mas um samaritano, que era desprezado pelos judeus, viajando por aquele caminho, viu o homem e sentiu uma profunda compaixão. Ele desceu do seu animal, aproximou-se, limpou os ferimentos com vinho e azeite, e enfaixou-os. Depois, colocou o homem sobre o seu próprio burro, levou-o para uma hospedaria e cuidou dele a noite inteira.</p>
-  <div class="child-read">
-    🤝 A CRIANÇA LÊ EM VOZ ALTA AS ATITUDES DO BOM SAMARITANO:<br>
-    <strong>“CUIDOU • DEITOU ÓLEO • LEVOU À HOSPEDARIA • PAGOU”</strong>
-  </div>
-  <div class="page-number">9</div>
-</div>
-
-<!-- PÁGINA 10 -->
-<div class="page">
-  <div class="illustration">
-    <i>🏨❤️👧</i>
-    <span>🖼️ Criança ajudando outra a levantar, corações e abraço – aplicação infantil</span>
-  </div>
-  <p>No dia seguinte, o samaritano tirou duas moedas de prata e deu ao hospedeiro: “Cuida bem dele. Se gastares mais do que isso, na minha volta eu te pagarei”. Depois Jesus contou essa história e perguntou: “Qual desses três foi o próximo do homem ferido?”. O mestre da lei respondeu: “Aquele que usou de misericórdia”. Jesus então disse: “Vai e faze o mesmo”.</p>
-  <p>A lição é clara: ser próximo não é só quem mora ao lado ou pensa igual a nós. Próximo é aquele que age com compaixão, que para, que sacrifica seu tempo e seus recursos para ajudar quem precisa. O samaritano não tinha obrigação, mas teve um coração misericordioso. Jesus quer que você também seja assim: que enxergue a dor do outro e faça o bem, mesmo quando ninguém está olhando. Amar ao próximo é colocar o amor de Deus em ação todos os dias – na escola, em casa, no parquinho.</p>
-  <div class="bible-verse">📖 Lucas 10:27 – “Amarás o teu próximo como a ti mesmo”.</div>
-  <div class="prayer">🙏 ORAÇÃO: “Senhor Jesus, ensina-nos a ter compaixão igual ao bom samaritano. Não permitas que passemos de largo diante da dor de alguém. Ajuda nossa família a praticar o amor todos os dias. Amém.”</div>
-  <div class="parent-tip">✏️ PRATIQUE EM CASA: Durante uma semana, cada um vai fazer uma “ação de bom samaritano” escondida (arrumar a mochila do irmão, dar um copo d’água, escrever um bilhete amável). Depois compartilhem.</div>
-  <div class="page-number">10</div>
-</div>
-
-<!-- ===================== HISTÓRIA 5: NASCIMENTO DE JESUS ===================== -->
-<!-- PÁGINA 11 -->
-<div class="page">
-  <div class="page-header">✦ HISTÓRIA 5 ✦</div>
-  <div class="story-title">🌟 O presente do céu – o nascimento de Jesus</div>
-  <div class="illustration">
-    <i>🐏🌠👼</i>
-    <span>🖼️ Presépio com Maria, José, o menino Jesus na manjedoura, estrela de Belém brilhando</span>
-  </div>
-  <p>Naqueles dias, o imperador César Augusto mandou que todos fossem se recensear em sua cidade natal. José, que era descendente do rei Davi, precisava ir para Belém, a cidade de Davi. Ele foi com Maria, sua esposa, que estava grávida do menino Jesus. A viagem era longa e cansativa. Quando chegaram em Belém, todas as hospedarias estavam lotadas. Não havia lugar para eles. O único abrigo foi uma estrebaria, um lugar onde os animais dormiam.</p>
-  <p>Foi ali, num ambiente simples e humilde, que o Salvador do mundo nasceu. Maria o envolveu em panos e o deitou numa manjedoura – o cocho onde os animais comem. Naquela mesma noite, pastores vigiavam suas ovelhas nos campos próximos. De repente, um anjo do Senhor apareceu, e a glória de Deus brilhou ao redor deles. Eles ficaram com muito medo, mas o anjo disse: “Não temais! Eu vos trago uma boa-nova de grande alegria: hoje, na cidade de Davi, nasceu o Salvador, que é Cristo, o Senhor”.</p>
-  <div class="child-read">
-    🌟 COMPLETE AS FRASES (a criança completa em voz alta):<br>
-    “Os anjos cantavam: Glória a Deus nas ______” (alturas)<br>
-    “Os pastores foram correndo ver o ______” (menino Jesus)
-  </div>
-  <div class="page-number">11</div>
-</div>
-
-<!-- PÁGINA 12 -->
-<div class="page">
-  <div class="illustration">
-    <i>🎶👼🌟</i>
-    <span>🖼️ Pastores e anjos no céu, com coros celestiais e luz radiante</span>
-  </div>
-  <p>Imediatamente, juntou-se ao anjo uma grande multidão de anjos louvando a Deus: “Glória a Deus nas alturas, e paz na terra entre os homens de boa vontade!”. Os pastores disseram uns aos outros: “Vamos até Belém para vermos o que o Senhor nos revelou”. Foram apressadamente e encontraram Maria, José e o menino deitado na manjedoura. Então contaram a todos o que haviam visto e ouvido. Todos que ouviram ficaram maravilhados. Jesus, o Filho de Deus, veio ao mundo de forma humilde para nos ensinar sobre o amor e para nos salvar. O Natal não é apenas uma festa; é o lembrete de que Deus desceu do céu para estar perto de nós.</p>
-  <p>Que neste e em todos os dias, você possa celebrar o amor de Jesus. Ele nasceu para nos dar vida, esperança e alegria eterna. Conte essa história sempre, porque é a maior notícia de todas: Deus está conosco!</p>
-  <div class="bible-verse">📖 Lucas 2:11 – “Nasceu hoje o Salvador, que é Cristo, o Senhor”.</div>
-  <div class="prayer">🙏 ORAÇÃO: “Querido Jesus, obrigado por nascer por nós. Ajuda-nos a celebrar o Teu amor todos os dias, não apenas no Natal. Que o Teu nascimento renove a nossa fé e a nossa união familiar. Amém.”</div>
-  <div class="parent-tip">🎄 IDEIA ESPECIAL: Monte um pequeno presépio de papel com seu filho e repita o versículo de Lucas 2:11 todos os dias de dezembro.</div>
-  <div class="page-number">12</div>
-</div>
-
-<!-- BÔNUS: DANIEL NA COVA DOS LEÕES (páginas 13 e 14) -->
-<!-- PÁGINA 13 -->
-<div class="page">
-  <div class="page-header">✦ BÔNUS ✦</div>
-  <div class="story-title">🦁 Daniel e os leões – confiança inabalável</div>
-  <div class="illustration">
-    <i>🦁🕊️👑</i>
-    <span>🖼️ Daniel dentro da cova, vários leões ao redor, mas calmo e orando, com um anjo luminoso</span>
-  </div>
-  <p>O rei Dario nomeou Daniel como um dos três presidentes do reino, porque Daniel tinha um espírito excelente. Os outros governantes ficaram com inveja e procuraram um motivo para acusá-lo, mas não encontraram nada errado, pois Daniel era fiel. Então armaram um plano: convenceram o rei a assinar uma lei proibindo, por trinta dias, fazer qualquer pedido a qualquer deus ou homem, exceto ao próprio rei. Quem desobedecesse seria jogado na cova dos leões.</p>
-  <p>Daniel, quando soube do decreto, entrou em sua casa, abriu as janelas do quarto que davam para Jerusalém e, três vezes por dia, ajoelhava-se, orava e dava graças a Deus, como sempre fazia. Não se escondeu. Os inimigos o denunciaram ao rei. Dario ficou muito triste, pois gostava de Daniel, mas a lei não podia ser mudada. Daniel foi lançado na cova dos leões famintos. O rei disse: “Que o teu Deus, a quem serves continuamente, te livre”.</p>
-  <div class="child-read">
-    🧒 REPITA COM TODA A CONFIANÇA:<br>
-    “Meu Deus enviou o seu anjo e fechou a boca dos leões.” (Daniel 6:22)
-  </div>
-  <div class="page-number">13</div>
-</div>
-
-<!-- PÁGINA 14 -->
-<div class="page">
-  <div class="illustration">
-    <i>🦁😇📜</i>
-    <span>🖼️ Rei Dario ajoelhado louvando o Deus de Daniel, leões mansos ao redor</span>
-  </div>
-  <p>O rei voltou ao palácio, passou a noite em jejum e não dormiu. Ao amanhecer, levantou-se depressa e correu para a cova dos leões, clamando com voz angustiada: “Daniel, servo do Deus vivo, o teu Deus, a quem serves continuamente, pôde livrar-te dos leões?”. Da cova, Daniel respondeu: “Ó rei, vive para sempre! O meu Deus enviou o seu anjo e fechou a boca dos leões, porque diante dele fui achado inocente”. O rei ficou radiante de alegria e mandou tirar Daniel da cova. Nenhum ferimento havia nele, porque confiou em Deus.</p>
-  <p>Então Dario publicou um decreto: “Que todos tremam diante do Deus de Daniel, porque Ele é o Deus vivo e eterno, e seu reino nunca será destruído”. Daniel prosperou nos reinados seguintes. Esta história mostra que a oração e a confiança em Deus são mais poderosas que qualquer perigo. Quando confiamos de verdade, Deus envia anjos para nos proteger, mesmo que estejamos rodeados de “leões”. Nunca pare de orar e confiar, porque o Deus de Daniel ainda faz milagres.</p>
-  <div class="bible-verse">📖 Daniel 6:26 – “Daniel serve o Deus vivo, que livra e salva”.</div>
-  <div class="prayer">🙏 ORAÇÃO: “Deus Todo-Poderoso, ajuda-nos a confiar em Ti como Daniel. Que nunca abandonemos a oração, mesmo quando houver risco. Fecha a boca dos leões em nossa vida. Amém.”</div>
-  <div class="parent-tip">💪 DESAFIO DA SEMANA: Toda noite antes de dormir, ore com seu filho de joelhos, “como Daniel”, e agradeça a proteção de Deus.</div>
-  <div class="page-number">14</div>
-</div>
-
-<!-- ATIVIDADES E VERSÍCULOS (páginas 15 e 16) -->
-<div class="page">
-  <div class="page-header">✧ ATIVIDADES PARA COLORIR ✧</div>
-  <div class="illustration">
-    <i>🎨🖍️🐘</i>
-    <span>🖼️ DESENHO PARA COLORIR: A Arca de Noé com contornos – céu, arca e fila de animais (preto e branco)</span>
-  </div>
-  <div class="illustration">
-    <i>🧩🏹</i>
-    <span>🖼️ LABIRINTO: Ajude Davi a chegar até Golias com sua funda. Desenhe o caminho.</span>
-  </div>
-  <div class="footer-note-book">Pinte com capricho e lembre-se: Deus ama quando usamos nossas mãos para criar.</div>
-  <div class="page-number">15</div>
-</div>
-
-<div class="page">
-  <h2 style="margin-top: 0;">📜 Versículos para memorizar em família</h2>
-  <ul style="margin: 0.6cm 0 0.8cm 1cm; line-height: 2; font-size: 1rem;">
-    <li><strong>Provérbios 3:5</strong> – “Confie no Senhor de todo o seu coração.”</li>
-    <li><strong>Salmo 56:3</strong> – “Quando estou com medo, confio em Ti.”</li>
-    <li><strong>Efésios 4:32</strong> – “Sejam bondosos e compassivos uns para com os outros.”</li>
-  </ul>
-  <div class="illustration">
-    <i>📇✂️💌</i>
-    <span>🖼️ Cards para recortar: três versículos ilustrados com coração e pomba da paz</span>
-  </div>
-  <div class="parent-tip">📌 Recorte os versículos, cole na geladeira e repitam em voz alta toda manhã.</div>
-  <div class="page-number">16</div>
-</div>
-
-<!-- PASSAPORTE DA RECONEXÃO (página 17) -->
-<div class="page">
-  <h2 style="margin-top: 0;">⭐ Passaporte da Reconexão – 21 dias</h2>
-  <div class="illustration">
-    <i>🎫🕊️🧾</i>
-    <span>🖼️ Modelo de passaporte com carimbos, corações e escrito “Fé em Família – 21 dias de desafios”</span>
-  </div>
-  <p>Desafios diários para fortalecer o vínculo com seu filho através da fé e das histórias bíblicas. Cada dia, uma pequena missão especial.</p>
-  <div style="background:#fcf3e6; padding: 18px; border-radius: 28px; margin: 0.6cm 0;">
-    <p>✅ <strong>Dia 1:</strong> Antes de dormir, abracem-se e recitem o Salmo 23 juntos.<br>
-    ✅ <strong>Dia 7:</strong> Desenhem juntos a passagem favorita (Jonas, Davi ou o presépio).<br>
-    ✅ <strong>Dia 14:</strong> Liguem para um avô ou avó e contem a história do Bom Samaritano.<br>
-    ✅ <strong>Dia 21:</strong> Oração especial de gratidão por 21 dias de reconexão – acendam uma vela e agradeçam.</p>
-  </div>
-  <div class="prayer">🌿 Oração final do passaporte: “Obrigado, Deus, por cada história e por nos unir cada vez mais. Abençoe nossa família. Amém.”</div>
-  <div class="page-number">17</div>
-</div>
-
-<!-- ÚLTIMA PÁGINA: QR CODE BÔNUS (página 18) -->
-<div class="page">
-  <h2 style="margin-top: 0;">🎧 Bônus exclusivo: áudios narrados</h2>
-  <p>Escaneie o QR code abaixo com o celular para ouvir as histórias com voz suave, sons da natureza e música ambiente. Perfeito para momentos de oração ou para a criança ouvir enquanto descansa.</p>
-  <div class="illustration">
-    <i>📲🔊🎶</i>
-    <span>🖼️ QR CODE (insira aqui sua imagem) – direciona para as narrações das 5 histórias principais</span>
-  </div>
-  <div class="illustration">
-    <i>🌙😴🎧</i>
-    <span>🖼️ Criança dormindo com fone de ouvido, estrela brilhante e anjo a velar</span>
-  </div>
-  <div class="footer-note-book">✨ Que este livro seja um tesouro em sua família. Volte a ele sempre que precisar lembrar do amor de Deus. ✨</div>
-  <div class="page-number">18</div>
+    <span class="contracapa-versao">Minuto com Deus · Série Bíblica Familiar · v2.0</span>
 </div>
 
 </body>
