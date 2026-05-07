@@ -1,134 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Curso - 30 Dias com Deus</title>
-    <style>
-        :root {
-            --primaria: #4a5d4d; /* Verde musgo suave (estilo editorial) */
-            --secundaria: #f4f1ea; /* Fundo creme papel */
-            --texto: #333;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background-color: var(--secundaria);
-            color: var(--texto);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-        }
-
-        h1 {
-            font-weight: normal;
-            font-size: 2.5rem;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .secao {
-            background: white;
-            padding: 25px;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primaria);
-            margin-top: 0;
-        }
-
-        .grid-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .link-card {
-            display: block;
-            text-decoration: none;
-            color: var(--texto);
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            padding: 15px;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .link-card:hover {
-            border-color: var(--primaria);
-            background: var(--secundaria);
-            transform: translateY(-2px);
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--primaria);
-            color: white;
-            padding: 2px 8px;
-            font-size: 0.7rem;
-            border-radius: 10px;
-            margin-bottom: 5px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Material de Apoio: 30 Dias com Deus</h1>
-
-        <!-- SEÇÃO DOS LIVROS -->
+<!-- SEÇÃO DOS LIVROS (Estrutura de Subpastas) -->
         <div class="secao">
             <h2>📖 Histórias para Ler Juntos</h2>
             <div class="grid-links">
-                <!-- Ajuste os nomes dos arquivos conforme você for criando -->
-                <a href="livros/historia1.html" class="link-card">Livro 01</a>
-                <a href="livros/historia2.html" class="link-card">Livro 02</a>
-                <a href="livros/historia3.html" class="link-card">Livro 03</a>
-                <a href="livros/historia4.html" class="link-card">Livro 04</a>
-                <a href="livros/historia5.html" class="link-card">Livro 05</a>
+                <!-- Entra na pasta H1 e busca o historia1.html -->
+                <a href="livros/H1-CRIACAO/historia1.html" class="link-card">História 01: Criação</a>
+                
+                <!-- Entra na pasta H2 e busca o historia2.html -->
+                <a href="livros/H2-ADAO/historia2.html" class="link-card">História 02: Adão e Eva</a>
+                
+                <!-- Entra na pasta H3 e busca o historia3.html -->
+                <a href="livros/H3-ARCA/historia3.html" class="link-card">História 03: Arca de Noé</a>
+                
+                <!-- Entra na pasta H4 e busca o historia4.html -->
+                <a href="livros/H4-ABRAAO/historia4.html" class="link-card">História 04: Abraão</a>
+                
+                <!-- Entra na pasta H5 e busca o historia5.html -->
+                <a href="livros/H5-JOSE/historia5.html" class="link-card">História 05: José do Egito</a>
             </div>
         </div>
-
-        <!-- SEÇÃO DAS ATIVIDADES -->
-        <div class="secao">
-            <h2>🎨 Cadernos de Atividades (PDFs)</h2>
-            <div class="grid-links">
-                <a href="atividades/semana1.html" class="link-card">
-                    <span class="badge">Dias 01-07</span><br>Semana 1
-                </a>
-                <a href="atividades/semana2.html" class="link-card">
-                    <span class="badge">Dias 08-14</span><br>Semana 2
-                </a>
-                <a href="atividades/semana3.html" class="link-card">
-                    <span class="badge">Dias 15-21</span><br>Semana 3
-                </a>
-                <a href="atividades/semana4.html" class="link-card">
-                    <span class="badge">Dias 22-30</span><br>Semana 4
-                </a>
-            </div>
-        </div>
-
-        <p style="font-size: 0.8rem; color: #999; text-align: center;">
-            Use Ctrl+P em cada página para salvar o PDF para a Kiwify.
-        </p>
-    </div>
-
-</body>
-</html>
