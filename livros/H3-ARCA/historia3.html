@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -11,11 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Baloo+2:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ═══════════════════════════════════════════
-           TOKENS & VARIÁVEIS GLOBAIS
-        ═══════════════════════════════════════════ */
         :root {
-            /* Paleta principal */
             --creme:        #f7f0e3;
             --creme-escuro: #ede4d0;
             --marrom:       #3e2a14;
@@ -28,12 +23,10 @@
             --rosa-suave:   #f5dcd0;
             --capa-fundo:   #1e2e1e;
 
-            /* Bordas reutilizáveis — apenas 3 formas */
-            --r-livro:  20px;     /* livro / capa */
-            --r-bloco:  16px 4px 16px 4px;  /* blocos de conteúdo */
-            --r-infantil: 32px;   /* elementos da criança */
+            --r-livro:  20px;
+            --r-bloco:  16px 4px 16px 4px;
+            --r-infantil: 32px;
 
-            /* Tipografia */
             --fonte-adulto: 'Cormorant Garamond', serif;
             --fonte-crianca: 'Baloo 2', cursive;
             --fonte-corpo:  'Lato', sans-serif;
@@ -54,18 +47,12 @@
             min-height: 100vh;
         }
 
-        /* ═══════════════════════════════════════════
-           CAPA
-        ═══════════════════════════════════════════ */
         .capa {
             width: 100%;
             max-width: 520px;
             background: var(--capa-fundo);
             border-radius: var(--r-livro);
-            box-shadow:
-                0 30px 60px rgba(0,0,0,0.7),
-                0 0 0 2px rgba(196,154,69,0.4),
-                inset 0 0 60px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 0 2px rgba(196,154,69,0.4), inset 0 0 60px rgba(0,0,0,0.5);
             padding: 48px 36px 40px;
             display: flex;
             flex-direction: column;
@@ -75,7 +62,6 @@
             overflow: hidden;
         }
 
-        /* Textura de grão na capa */
         .capa::before {
             content: '';
             position: absolute;
@@ -85,7 +71,6 @@
             border-radius: var(--r-livro);
         }
 
-        /* Moldura dourada da capa */
         .capa::after {
             content: '';
             position: absolute;
@@ -97,620 +82,144 @@
 
         .capa-serie {
             font-family: var(--fonte-corpo);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            color: var(--dourado);
-            text-transform: uppercase;
-            opacity: 0.85;
-            position: relative;
-            z-index: 1;
+            font-size: 11px; font-weight: 700; letter-spacing: 4px; color: var(--dourado); text-transform: uppercase; opacity: 0.85; position: relative; z-index: 1;
         }
 
-        /* Símbolo da série — pomba estilizada em SVG inline */
         .capa-simbolo {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
+            position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;
         }
 
         .capa-simbolo svg {
-            width: 72px;
-            height: 72px;
-            filter: drop-shadow(0 4px 12px rgba(196,154,69,0.5));
+            width: 72px; height: 72px; filter: drop-shadow(0 4px 12px rgba(196,154,69,0.5));
         }
 
         .capa-titulo-serie {
-            font-family: var(--fonte-adulto);
-            font-size: 28px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
+            font-family: var(--fonte-adulto); font-size: 28px; font-weight: 700; color: #fff; letter-spacing: 1px; text-align: center; position: relative; z-index: 1;
         }
 
         .capa-divisor {
-            width: 80px;
-            height: 1.5px;
-            background: linear-gradient(to right, transparent, var(--dourado), transparent);
-            position: relative;
-            z-index: 1;
+            width: 80px; height: 1.5px; background: linear-gradient(to right, transparent, var(--dourado), transparent); position: relative; z-index: 1;
         }
 
-        /* Container da imagem da capa */
         .capa-imagem {
-            width: 100%;
-            aspect-ratio: 4/3;
-            border-radius: 12px;
-            border: 1px solid rgba(196,154,69,0.25);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            width: 100%; aspect-ratio: 4/3; border-radius: 12px; border: 1px solid rgba(196,154,69,0.25); position: relative; z-index: 1; overflow: hidden;
         }
 
         .capa-imagem img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
+            width: 100%; height: 100%; object-fit: cover; border-radius: 12px;
         }
 
         .capa-titulo-historia {
-            font-family: var(--fonte-adulto);
-            font-size: 36px;
-            font-weight: 700;
-            font-style: italic;
-            color: var(--dourado-claro);
-            text-align: center;
-            line-height: 1.15;
-            position: relative;
-            z-index: 1;
+            font-family: var(--fonte-adulto); font-size: 36px; font-weight: 700; font-style: italic; color: var(--dourado-claro); text-align: center; line-height: 1.15; position: relative; z-index: 1;
         }
 
         .capa-episodio {
-            font-family: var(--fonte-corpo);
-            font-size: 11px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.4);
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
+            font-family: var(--fonte-corpo); font-size: 11px; font-weight: 300; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; position: relative; z-index: 1;
         }
 
-        /* ═══════════════════════════════════════════
-           LIVRO SPREAD (PÁGINAS DUPLAS)
-        ═══════════════════════════════════════════ */
         .livro-spread {
-            display: flex;
-            width: 100%;
-            max-width: 1120px;
-            background: var(--marrom);
-            border-radius: var(--r-livro) 6px 6px var(--r-livro);
-            box-shadow:
-                0 24px 50px rgba(0,0,0,0.6),
-                0 0 0 1px rgba(196,154,69,0.2),
-                inset 0 0 30px rgba(0,0,0,0.3);
-            padding: 12px 10px;
-            position: relative;
+            display: flex; width: 100%; max-width: 1120px; background: var(--marrom); border-radius: var(--r-livro) 6px 6px var(--r-livro);
+            box-shadow: 0 24px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(196,154,69,0.2), inset 0 0 30px rgba(0,0,0,0.3);
+            padding: 12px 10px; position: relative;
         }
 
-        /* Lombada */
         .livro-spread::before {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0;
-            left: 50%;
-            width: 8px;
-            transform: translateX(-50%);
-            background: linear-gradient(to right,
-                rgba(0,0,0,0.3) 0%,
-                rgba(180,140,80,0.5) 30%,
-                rgba(220,180,100,0.6) 50%,
-                rgba(180,140,80,0.5) 70%,
-                rgba(0,0,0,0.3) 100%);
+            content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 8px; transform: translateX(-50%);
+            background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(180,140,80,0.5) 30%, rgba(220,180,100,0.6) 50%, rgba(180,140,80,0.5) 70%, rgba(0,0,0,0.3) 100%);
             z-index: 10;
         }
 
-        /* Marcador de fita com cruz */
         .livro-spread::after {
-            content: '';
-            position: absolute;
-            top: -18px;
-            right: 32px;
-            width: 28px;
-            height: 50px;
-            background: var(--dourado);
-            border-radius: 0 0 6px 6px;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
-            z-index: 20;
-            background-image:
-                linear-gradient(#fff 0%, #fff 100%),
-                linear-gradient(#fff 0%, #fff 100%);
-            background-image:
-                linear-gradient(to bottom, transparent 38%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.7) 56%, transparent 56%),
-                linear-gradient(to right,  transparent 38%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.7) 56%, transparent 56%);
+            content: ''; position: absolute; top: -18px; right: 32px; width: 28px; height: 50px; background: var(--dourado); border-radius: 0 0 6px 6px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.4); z-index: 20;
+            background-image: linear-gradient(to bottom, transparent 38%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.7) 56%, transparent 56%),
+                              linear-gradient(to right,  transparent 38%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.7) 56%, transparent 56%);
         }
 
-        /* ═══════════════════════════════════════════
-           PÁGINAS INTERNAS
-        ═══════════════════════════════════════════ */
         .pagina {
-            flex: 1;
-            background: var(--creme);
-            padding: 28px 24px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            flex: 1; background: var(--creme); padding: 28px 24px 20px; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; z-index: 1;
         }
 
-        .pagina-esquerda {
-            border-radius: 10px 2px 2px 10px;
-            margin-right: 4px;
-            box-shadow: inset -12px 0 20px rgba(0,0,0,0.06);
-        }
-
-        .pagina-direita {
-            border-radius: 2px 10px 10px 2px;
-            margin-left: 4px;
-            box-shadow: inset 12px 0 20px rgba(0,0,0,0.04);
-        }
+        .pagina-esquerda { border-radius: 10px 2px 2px 10px; margin-right: 4px; box-shadow: inset -12px 0 20px rgba(0,0,0,0.06); }
+        .pagina-direita  { border-radius: 2px 10px 10px 2px; margin-left: 4px; box-shadow: inset 12px 0 20px rgba(0,0,0,0.04); }
 
         .pagina::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 27px,
-                rgba(62,42,20,0.04) 28px
-            );
+            content: ''; position: absolute; inset: 0;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(62,42,20,0.04) 28px);
             pointer-events: none;
         }
 
-        .etiqueta-pagina {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: -4px;
-        }
+        .etiqueta-pagina { display: flex; align-items: center; gap: 10px; margin-bottom: -4px; }
+        .etiqueta-pagina .tag { font-family: var(--fonte-corpo); font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+        .tag-adulto { background: var(--azul); color: var(--dourado-claro); }
+        .tag-crianca { background: var(--verde-agua); color: #fff; }
+        .etiqueta-pagina .titulo-episodio { font-family: var(--fonte-adulto); font-size: 13px; font-weight: 600; color: var(--marrom-mid); font-style: italic; }
 
-        .etiqueta-pagina .tag {
-            font-family: var(--fonte-corpo);
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            border-radius: 20px;
-        }
+        .cabecalho-serie { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--dourado); padding-bottom: 10px; }
+        .cabecalho-serie .marca { font-family: var(--fonte-corpo); font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--azul); text-transform: uppercase; opacity: 0.7; }
+        .cabecalho-serie .num-pagina { font-family: var(--fonte-corpo); font-size: 10px; color: var(--dourado); font-weight: 300; letter-spacing: 1px; }
 
-        .tag-adulto {
-            background: var(--azul);
-            color: var(--dourado-claro);
-        }
-
-        .tag-crianca {
-            background: var(--verde-agua);
-            color: #fff;
-        }
-
-        .etiqueta-pagina .titulo-episodio {
-            font-family: var(--fonte-adulto);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--marrom-mid);
-            font-style: italic;
-        }
-
-        .cabecalho-serie {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--dourado);
-            padding-bottom: 10px;
-        }
-
-        .cabecalho-serie .marca {
-            font-family: var(--fonte-corpo);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: var(--azul);
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-
-        .cabecalho-serie .num-pagina {
-            font-family: var(--fonte-corpo);
-            font-size: 10px;
-            color: var(--dourado);
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .moldura-imagem {
-            background: #fff8ee;
-            border-radius: var(--r-bloco);
-            padding: 8px;
-            box-shadow:
-                0 3px 10px rgba(62,42,20,0.12),
-                0 0 0 1px rgba(196,154,69,0.25);
-            overflow: hidden;
-        }
-
-        .moldura-imagem img {
-            width: 100%;
-            height: auto;
-            border-radius: 14px 2px 14px 2px;
-            display: block;
-        }
+        .moldura-imagem { background: #fff8ee; border-radius: var(--r-bloco); padding: 8px; box-shadow: 0 3px 10px rgba(62,42,20,0.12), 0 0 0 1px rgba(196,154,69,0.25); overflow: hidden; }
+        .moldura-imagem img { width: 100%; height: auto; border-radius: 14px 2px 14px 2px; display: block; }
 
         .texto-adulto {
-            font-family: var(--fonte-adulto);
-            font-size: 16px;
-            line-height: 1.85;
-            color: var(--marrom);
-            text-align: justify;
-            padding: 14px 18px;
-            background: rgba(255,255,255,0.5);
-            border-radius: var(--r-bloco);
-            border-left: 4px solid var(--dourado);
-            position: relative;
+            font-family: var(--fonte-adulto); font-size: 16px; line-height: 1.85; color: var(--marrom); text-align: justify;
+            padding: 14px 18px; background: rgba(255,255,255,0.5); border-radius: var(--r-bloco); border-left: 4px solid var(--dourado); position: relative;
         }
+        .texto-adulto::before { content: '\201C'; position: absolute; top: -4px; left: 8px; font-size: 48px; color: var(--dourado); opacity: 0.25; font-family: var(--fonte-adulto); line-height: 1; }
 
-        .texto-adulto::before {
-            content: '\201C';
-            position: absolute;
-            top: -4px;
-            left: 8px;
-            font-size: 48px;
-            color: var(--dourado);
-            opacity: 0.25;
-            font-family: var(--fonte-adulto);
-            line-height: 1;
-        }
+        .versiculo-inline { font-family: var(--fonte-adulto); font-size: 13.5px; font-style: italic; color: var(--azul); text-align: center; background: rgba(26,53,53,0.06); border-radius: var(--r-bloco); padding: 10px 16px; border-top: 2px solid var(--dourado); border-bottom: 2px solid var(--dourado); }
+        .versiculo-inline .ref { display: block; font-family: var(--fonte-corpo); font-size: 11px; font-weight: 700; font-style: normal; color: var(--dourado); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
 
-        .versiculo-inline {
-            font-family: var(--fonte-adulto);
-            font-size: 13.5px;
-            font-style: italic;
-            color: var(--azul);
-            text-align: center;
-            background: rgba(26,53,53,0.06);
-            border-radius: var(--r-bloco);
-            padding: 10px 16px;
-            border-top: 2px solid var(--dourado);
-            border-bottom: 2px solid var(--dourado);
-        }
+        .frase-crianca { font-family: var(--fonte-crianca); font-size: 34px; font-weight: 800; color: var(--azul); text-align: center; line-height: 1.2; padding: 16px 12px 10px; background: rgba(74,124,111,0.08); border-radius: var(--r-infantil); border-bottom: 4px solid var(--verde-agua); box-shadow: 0 3px 0 rgba(74,124,111,0.15); }
 
-        .versiculo-inline .ref {
-            display: block;
-            font-family: var(--fonte-corpo);
-            font-size: 11px;
-            font-weight: 700;
-            font-style: normal;
-            color: var(--dourado);
-            letter-spacing: 1px;
-            margin-top: 4px;
-            text-transform: uppercase;
-        }
+        .pergunta-dia { background: var(--rosa-suave); border-radius: var(--r-infantil); padding: 14px 18px; border-left: 5px solid var(--dourado); }
+        .pergunta-dia .label { font-family: var(--fonte-crianca); font-size: 11px; font-weight: 700; color: var(--dourado); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 4px; }
+        .pergunta-dia .texto { font-family: var(--fonte-crianca); font-size: 18px; font-weight: 600; color: var(--marrom); line-height: 1.4; }
 
-        .frase-crianca {
-            font-family: var(--fonte-crianca);
-            font-size: 34px;
-            font-weight: 800;
-            color: var(--azul);
-            text-align: center;
-            line-height: 1.2;
-            padding: 16px 12px 10px;
-            background: rgba(74,124,111,0.08);
-            border-radius: var(--r-infantil);
-            border-bottom: 4px solid var(--verde-agua);
-            box-shadow: 0 3px 0 rgba(74,124,111,0.15);
-        }
+        .atividade { border: 2.5px dashed var(--dourado); border-radius: var(--r-infantil); padding: 14px; min-height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,0.4); }
+        .atividade .label-atividade { font-family: var(--fonte-crianca); font-size: 12px; font-weight: 700; color: var(--verde-agua); letter-spacing: 1.5px; text-transform: uppercase; }
+        .atividade .instrucao { font-family: var(--fonte-crianca); font-size: 16px; color: var(--marrom-mid); text-align: center; line-height: 1.4; }
 
-        .pergunta-dia {
-            background: var(--rosa-suave);
-            border-radius: var(--r-infantil);
-            padding: 14px 18px;
-            border-left: 5px solid var(--dourado);
-        }
+        .oracao-participativa { background: var(--azul); border-radius: var(--r-infantil); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+        .oracao-participativa .titulo-oracao { font-family: var(--fonte-crianca); font-size: 13px; font-weight: 700; color: var(--dourado-claro); letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+        .oracao-participativa .titulo-oracao::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--dourado-claro); opacity: 0.5; }
+        .oracao-participativa .texto-oracao { font-family: var(--fonte-adulto); font-size: 16px; font-style: italic; color: #fff; line-height: 1.7; }
+        .oracao-participativa .completar { border-bottom: 1.5px solid rgba(255,255,255,0.4); display: inline-block; min-width: 100px; margin: 0 4px; }
+        .oracao-participativa .oracao-amen { font-family: var(--fonte-adulto); font-size: 15px; font-weight: 700; color: var(--dourado-claro); text-align: right; letter-spacing: 1px; }
 
-        .pergunta-dia .label {
-            font-family: var(--fonte-crianca);
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--dourado);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 4px;
-        }
+        .licao-pratica { background: rgba(26,53,53,0.06); border-left: 4px solid var(--azul-claro); padding: 12px 16px; border-radius: 0 var(--r-infantil) var(--r-infantil) 0; font-family: var(--fonte-adulto); font-size: 14px; color: var(--marrom); line-height: 1.7; }
+        .licao-pratica strong { font-family: var(--fonte-corpo); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul); display: block; margin-bottom: 4px; }
 
-        .pergunta-dia .texto {
-            font-family: var(--fonte-crianca);
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--marrom);
-            line-height: 1.4;
-        }
+        .rodape-pagina { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px dashed rgba(196,154,69,0.35); }
+        .rodape-pagina .serie-mini { font-family: var(--fonte-corpo); font-size: 9px; letter-spacing: 2px; color: var(--dourado); opacity: 0.6; text-transform: uppercase; }
+        .rodape-pagina .num { font-family: var(--fonte-corpo); font-size: 10px; color: var(--marrom-mid); opacity: 0.5; }
 
-        .atividade {
-            border: 2.5px dashed var(--dourado);
-            border-radius: var(--r-infantil);
-            padding: 14px;
-            min-height: 110px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            background: rgba(255,255,255,0.4);
-        }
-
-        .atividade .label-atividade {
-            font-family: var(--fonte-crianca);
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--verde-agua);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .atividade .instrucao {
-            font-family: var(--fonte-crianca);
-            font-size: 16px;
-            color: var(--marrom-mid);
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        .oracao-participativa {
-            background: var(--azul);
-            border-radius: var(--r-infantil);
-            padding: 18px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .oracao-participativa .titulo-oracao {
-            font-family: var(--fonte-crianca);
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--dourado-claro);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .oracao-participativa .titulo-oracao::before {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 1px;
-            background: var(--dourado-claro);
-            opacity: 0.5;
-        }
-
-        .oracao-participativa .texto-oracao {
-            font-family: var(--fonte-adulto);
-            font-size: 16px;
-            font-style: italic;
-            color: #fff;
-            line-height: 1.7;
-        }
-
-        .oracao-participativa .completar {
-            border-bottom: 1.5px solid rgba(255,255,255,0.4);
-            display: inline-block;
-            min-width: 100px;
-            margin: 0 4px;
-        }
-
-        .oracao-participativa .oracao-amen {
-            font-family: var(--fonte-adulto);
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--dourado-claro);
-            text-align: right;
-            letter-spacing: 1px;
-        }
-
-        .licao-pratica {
-            background: rgba(26,53,53,0.06);
-            border-left: 4px solid var(--azul-claro);
-            padding: 12px 16px;
-            border-radius: 0 var(--r-infantil) var(--r-infantil) 0;
-            font-family: var(--fonte-adulto);
-            font-size: 14px;
-            color: var(--marrom);
-            line-height: 1.7;
-        }
-
-        .licao-pratica strong {
-            font-family: var(--fonte-corpo);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--azul);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .rodape-pagina {
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 10px;
-            border-top: 1px dashed rgba(196,154,69,0.35);
-        }
-
-        .rodape-pagina .serie-mini {
-            font-family: var(--fonte-corpo);
-            font-size: 9px;
-            letter-spacing: 2px;
-            color: var(--dourado);
-            opacity: 0.6;
-            text-transform: uppercase;
-        }
-
-        .rodape-pagina .num {
-            font-family: var(--fonte-corpo);
-            font-size: 10px;
-            color: var(--marrom-mid);
-            opacity: 0.5;
-        }
-
-        /* ═══════════════════════════════════════════
-           CONTRACAPA
-        ═══════════════════════════════════════════ */
         .contracapa {
-            width: 100%;
-            max-width: 520px;
-            background: var(--capa-fundo);
-            border-radius: var(--r-livro);
-            box-shadow:
-                0 20px 40px rgba(0,0,0,0.6),
-                0 0 0 2px rgba(196,154,69,0.3),
-                inset 0 0 40px rgba(0,0,0,0.4);
-            padding: 40px 36px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-            position: relative;
-            overflow: hidden;
+            width: 100%; max-width: 520px; background: var(--capa-fundo); border-radius: var(--r-livro);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 0 2px rgba(196,154,69,0.3), inset 0 0 40px rgba(0,0,0,0.4);
+            padding: 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 18px; position: relative; overflow: hidden;
         }
-
-        .contracapa::after {
-            content: '';
-            position: absolute;
-            inset: 14px;
-            border: 1px solid rgba(196,154,69,0.2);
-            border-radius: calc(var(--r-livro) - 4px);
-            pointer-events: none;
-        }
-
-        .contracapa .titulo-secao {
-            font-family: var(--fonte-corpo);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: var(--dourado);
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contracapa h3 {
-            font-family: var(--fonte-adulto);
-            font-size: 22px;
-            font-weight: 600;
-            color: #fff;
-            text-align: center;
-            line-height: 1.3;
-            position: relative;
-            z-index: 1;
-        }
-
-        .proximos-episodios {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .ep-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 16px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 12px;
-            border: 1px solid rgba(196,154,69,0.15);
-            transition: background 0.2s;
-        }
-
+        .contracapa::after { content: ''; position: absolute; inset: 14px; border: 1px solid rgba(196,154,69,0.2); border-radius: calc(var(--r-livro) - 4px); pointer-events: none; }
+        .contracapa .titulo-secao { font-family: var(--fonte-corpo); font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--dourado); text-transform: uppercase; position: relative; z-index: 1; }
+        .contracapa h3 { font-family: var(--fonte-adulto); font-size: 22px; font-weight: 600; color: #fff; text-align: center; line-height: 1.3; position: relative; z-index: 1; }
+        .proximos-episodios { width: 100%; display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; }
+        .ep-item { display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(196,154,69,0.15); transition: background 0.2s; }
         .ep-item:hover { background: rgba(255,255,255,0.08); }
-
-        .ep-num {
-            font-family: var(--fonte-crianca);
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--dourado);
-            opacity: 0.5;
-            min-width: 36px;
-            text-align: center;
-        }
-
-        .ep-info .ep-titulo {
-            font-family: var(--fonte-adulto);
-            font-size: 16px;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .ep-info .ep-subtitulo {
-            font-family: var(--fonte-corpo);
-            font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            margin-top: 1px;
-        }
-
+        .ep-num { font-family: var(--fonte-crianca); font-size: 22px; font-weight: 800; color: var(--dourado); opacity: 0.5; min-width: 36px; text-align: center; }
+        .ep-info .ep-titulo { font-family: var(--fonte-adulto); font-size: 16px; font-weight: 600; color: #fff; }
+        .ep-info .ep-subtitulo { font-family: var(--fonte-corpo); font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 1px; }
         .ep-item.atual .ep-num { opacity: 1; }
         .ep-item.atual { border-color: rgba(196,154,69,0.4); background: rgba(196,154,69,0.07); }
         .ep-item.atual .ep-titulo { color: var(--dourado-claro); }
+        .contracapa-versao { font-family: var(--fonte-corpo); font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 1px; position: relative; z-index: 1; }
 
-        .contracapa-versao {
-            font-family: var(--fonte-corpo);
-            font-size: 10px;
-            color: rgba(255,255,255,0.2);
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Responsivo e impressão (mantidos) */
         @media screen and (max-width: 820px) {
             .livro-spread { flex-direction: column; border-radius: 16px; }
             .pagina-esquerda, .pagina-direita { margin: 0; border-radius: 12px; }
             .livro-spread::before { display: none; }
             .frase-crianca { font-size: 26px; }
         }
-
-        @media screen and (max-width: 480px) {
-            body { padding: 20px 12px 40px; gap: 36px; }
-            .frase-crianca { font-size: 22px; }
-            .texto-adulto { font-size: 15px; }
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .capa, .livro-spread, .contracapa { animation: fadeUp 0.7s ease both; }
-        .livro-spread:nth-child(2) { animation-delay: 0.1s; }
-        .livro-spread:nth-child(3) { animation-delay: 0.2s; }
-        .livro-spread:nth-child(4) { animation-delay: 0.3s; }
-        .contracapa               { animation-delay: 0.4s; }
 
         @media print {
             body { background: white; padding: 0; gap: 0; }
@@ -726,7 +235,6 @@
 </head>
 <body>
 
-<!-- CAPA -->
 <div class="capa">
     <span class="capa-serie">Episódio 03 · Devocional Familiar</span>
 
@@ -755,9 +263,7 @@
     <span class="capa-episodio">Gênesis 6 – 9 · Para famílias</span>
 </div>
 
-<!-- SPREAD 1 -->
 <div class="livro-spread">
-    <!-- Página 1 – Adulto -->
     <div class="pagina pagina-esquerda">
         <div class="etiqueta-pagina">
             <span class="tag tag-adulto">Leia em voz alta</span>
@@ -796,7 +302,6 @@
         </div>
     </div>
 
-    <!-- Página 2 – Criança -->
     <div class="pagina pagina-direita">
         <div class="etiqueta-pagina">
             <span class="tag tag-crianca">Momento da criança</span>
@@ -840,9 +345,7 @@
     </div>
 </div>
 
-<!-- SPREAD 2 -->
 <div class="livro-spread">
-    <!-- Página 3 – Adulto -->
     <div class="pagina pagina-esquerda">
         <div class="etiqueta-pagina">
             <span class="tag tag-adulto">Leia em voz alta</span>
@@ -881,7 +384,6 @@
         </div>
     </div>
 
-    <!-- Página 4 – Criança -->
     <div class="pagina pagina-direita">
         <div class="etiqueta-pagina">
             <span class="tag tag-crianca">Momento da criança</span>
@@ -924,9 +426,7 @@
     </div>
 </div>
 
-<!-- SPREAD 3 -->
 <div class="livro-spread">
-    <!-- Página 5 – Adulto -->
     <div class="pagina pagina-esquerda">
         <div class="etiqueta-pagina">
             <span class="tag tag-adulto">Leia em voz alta</span>
@@ -965,7 +465,6 @@
         </div>
     </div>
 
-    <!-- Página 6 – Criança -->
     <div class="pagina pagina-direita">
         <div class="etiqueta-pagina">
             <span class="tag tag-crianca">Momento da criança</span>
@@ -1009,7 +508,6 @@
     </div>
 </div>
 
-<!-- CONTRACAPA -->
 <div class="contracapa">
     <span class="titulo-secao">Coleção completa</span>
     <h3>Mais histórias para o seu<br>Minuto com Deus</h3>
