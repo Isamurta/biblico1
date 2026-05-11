@@ -6,312 +6,112 @@
     <title>30 Dias com Deus – Semana 2</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --fundo: #fdfaf5;
-            --texto: #2c2c2c;
-            --verde: #4a5d4d;
-            --verde-claro: #e0e8dc;
-            --borda: #b7c4b0;
-        }
-
+        :root { --fundo: #fdfaf5; --texto: #2c2c2c; --verde: #4a5d4d; --verde-claro: #e0e8dc; --borda: #b7c4b0; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background: #ede6db;
-            font-family: 'Crimson Pro', 'Georgia', serif;
-            color: var(--texto);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
-            gap: 40px;
-        }
-
-        .caderno {
-            width: 210mm;
-            background: var(--fundo);
-            padding: 20mm 18mm;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            page-break-after: always;
-        }
-
-        .cabecalho {
-            text-align: center;
-            border-bottom: 2px solid var(--verde);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-
-        .cabecalho h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--verde);
-            letter-spacing: 1px;
-        }
-
-        .cabecalho .subtitulo {
-            font-size: 16px;
-            font-style: italic;
-            color: var(--texto);
-            opacity: 0.8;
-        }
-
-        .dia {
-            margin-bottom: 40px;
-            border-left: 4px solid var(--verde);
-            padding-left: 20px;
-        }
-
-        .dia-numero {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--verde);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .versiculo {
-            font-size: 20px;
-            font-style: italic;
-            background: var(--verde-claro);
-            padding: 12px 18px;
-            border-radius: 8px;
-            margin: 15px 0;
-            text-align: center;
-        }
-
-        .versiculo span {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 6px;
-            color: var(--verde);
-        }
-
-        .licao {
-            font-size: 18px;
-            line-height: 1.7;
-            margin: 15px 0;
-        }
-
-        .atividade {
-            background: #ffffff;
-            border: 2px dashed var(--borda);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .atividade h3 {
-            font-size: 20px;
-            color: var(--verde);
-            margin-bottom: 10px;
-        }
-
-        .caca-palavras table {
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-        .caca-palavras td {
-            width: 28px;
-            height: 28px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 600;
-            border: 1px solid #ccc;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-
-        .registro {
-            border: 2px dotted var(--borda);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            text-align: center;
-            color: var(--verde);
-            font-size: 16px;
-        }
-
-        @media print {
-            body { background: white; padding: 0; }
-            .caderno { box-shadow: none; width: 100%; padding: 15mm 15mm; page-break-after: always; }
-        }
+        body { background: #ede6db; font-family: 'Crimson Pro', 'Georgia', serif; color: var(--texto); display: flex; flex-direction: column; align-items: center; padding: 30px 20px; gap: 40px; }
+        .caderno { width: 210mm; background: var(--fundo); padding: 20mm 18mm; box-shadow: 0 10px 30px rgba(0,0,0,0.2); page-break-after: always; }
+        .cabecalho { text-align: center; border-bottom: 2px solid var(--verde); padding-bottom: 15px; margin-bottom: 30px; }
+        .cabecalho h1 { font-size: 32px; font-weight: 700; color: var(--verde); letter-spacing: 1px; }
+        .cabecalho .subtitulo { font-size: 16px; font-style: italic; color: var(--texto); opacity: 0.8; }
+        .dia { margin-bottom: 40px; border-left: 4px solid var(--verde); padding-left: 20px; }
+        .dia-numero { font-size: 18px; font-weight: 700; color: var(--verde); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .versiculo { font-size: 20px; font-style: italic; background: var(--verde-claro); padding: 12px 18px; border-radius: 8px; margin: 15px 0; text-align: center; }
+        .versiculo span { display: block; font-size: 14px; font-weight: 600; margin-top: 6px; color: var(--verde); }
+        .licao { font-size: 18px; line-height: 1.7; margin: 15px 0; }
+        .atividade { background: #ffffff; border: 2px dashed var(--borda); border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .atividade h3 { font-size: 20px; color: var(--verde); margin-bottom: 10px; }
+        img { max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; }
+        @media print { body { background: white; padding: 0; } .caderno { box-shadow: none; width: 100%; padding: 15mm 15mm; page-break-after: always; } }
     </style>
 </head>
 <body>
-
-<!-- Página 1 (Dias 8 a 11) -->
 <div class="caderno">
-    <div class="cabecalho">
-        <h1>📖 30 Dias com Deus</h1>
-        <p class="subtitulo">Semana 2 – A Arca de Noé</p>
-    </div>
+    <div class="cabecalho"><h1>📖 30 Dias com Deus</h1><p class="subtitulo">Semana 2 – A Arca de Noé</p></div>
 
-    <!-- Dia 8 -->
+    <!-- Dia 8 COM IMAGEM -->
     <div class="dia">
         <div class="dia-numero">Dia 8</div>
-        <div class="versiculo">
-            "Noé fez tudo conforme Deus lhe havia ordenado."<br>
-            <span>Gênesis 6:22</span>
-        </div>
-        <p class="licao">
-            Deus pediu a Noé que construísse uma grande arca para salvar sua família e os animais do dilúvio. Mesmo sem entender totalmente, Noé obedeceu. A obediência a Deus é o primeiro passo para viver milagres.
-        </p>
+        <div class="versiculo">"Noé fez tudo conforme Deus lhe havia ordenado."<br><span>Gênesis 6:22</span></div>
+        <p class="licao">Deus pediu a Noé que construísse uma grande arca para salvar sua família e os animais do dilúvio. Mesmo sem entender totalmente, Noé obedeceu. A obediência a Deus é o primeiro passo para viver milagres.</p>
         <div class="atividade">
             <h3>🔍 Atividade: Caça-palavras</h3>
-            <p>Encontre as palavras relacionadas à arca de Noé: <strong>ARCA, NOÉ, ANIMAIS, DILÚVIO, OBEDIÊNCIA, FAMÍLIA, MADEIRA</strong>.</p>
-            <div class="caca-palavras">
-                <table>
-                    <tr><td>A</td><td>R</td><td>C</td><td>A</td><td>N</td><td>O</td><td>É</td></tr>
-                    <tr><td>O</td><td>B</td><td>E</td><td>D</td><td>I</td><td>Ê</td><td>N</td></tr>
-                    <tr><td>C</td><td>I</td><td>A</td><td>M</td><td>A</td><td>D</td><td>E</td></tr>
-                    <tr><td>I</td><td>R</td><td>A</td><td>N</td><td>I</td><td>M</td><td>A</td></tr>
-                    <tr><td>I</td><td>S</td><td>D</td><td>I</td><td>L</td><td>Ú</td><td>V</td></tr>
-                    <tr><td>I</td><td>O</td><td>F</td><td>A</td><td>M</td><td>Í</td><td>L</td></tr>
-                    <tr><td>I</td><td>A</td><td>R</td><td>C</td><td>A</td><td>N</td><td>O</td></tr>
-                </table>
-            </div>
-            <p class="palavras-lista">Palavras: ARCA, NOÉ, ANIMAIS, DILÚVIO, OBEDIÊNCIA, FAMÍLIA, MADEIRA</p>
-        </div>
-        <div class="registro">
-            <span>📷 Registre seu momento:</span> Cole aqui uma foto ou desenho desta atividade.
+            <p>Encontre as palavras escondidas e marque-as na lista.</p>
+            <img src="caca-palavras-dia8.png" alt="Caça-palavras da Arca de Noé">
         </div>
     </div>
 
-    <!-- Dia 9 (COM IMAGEM) -->
+    <!-- Dia 9 COM IMAGEM -->
     <div class="dia">
         <div class="dia-numero">Dia 9</div>
-        <div class="versiculo">
-            "De todos os animais limpos e dos animais impuros, das aves e de todo réptil... entraram para Noé na arca."<br>
-            <span>Gênesis 7:8-9</span>
-        </div>
-        <p class="licao">
-            Animais de todas as espécies vieram até a arca. Deus cuidou de cada um, grandes e pequenos. Isso mostra que toda a criação é valiosa para Ele. Somos convidados a respeitar os animais e a natureza.
-        </p>
+        <div class="versiculo">"De todos os animais... entraram para Noé na arca."<br><span>Gênesis 7:8-9</span></div>
+        <p class="licao">Animais de todas as espécies vieram até a arca. Deus cuidou de cada um, grandes e pequenos. Isso mostra que toda a criação é valiosa para Ele.</p>
         <div class="atividade">
             <h3>🦒 Atividade: Animais para colorir e recortar</h3>
-            <p>Pinte os animais, recorte e cole ao redor da arca que você pode desenhar no espaço abaixo. Escreva o nome de cada um.</p>
+            <p>Pinte os animais, recorte e cole ao redor da arca que você desenhar no espaço abaixo. Escreva o nome de cada um.</p>
             <img src="atividade-dia9.png" alt="Animais para colorir e recortar">
-            <div style="width:100%; height:100px; border:1px dashed #ccc; margin:10px 0;"></div>
-        </div>
-        <div class="registro">
-            <span>📷 Registre seu momento:</span> Cole aqui uma foto ou desenho desta atividade.
         </div>
     </div>
 
-    <!-- Dia 10 (mantido sem imagem, dinâmica em família) -->
+    <!-- Dia 10 -->
     <div class="dia">
         <div class="dia-numero">Dia 10</div>
-        <div class="versiculo">
-            "E a chuva caiu sobre a terra quarenta dias e quarenta noites."<br>
-            <span>Gênesis 7:17-18</span>
-        </div>
-        <p class="licao">
-            Durante os dias do dilúvio, Noé e sua família ficaram protegidos dentro da arca. Hoje podemos confiar que Deus também nos guarda nos momentos difíceis.
-        </p>
+        <div class="versiculo">"E a chuva caiu sobre a terra quarenta dias e quarenta noites."<br><span>Gênesis 7:17-18</span></div>
+        <p class="licao">Durante os dias do dilúvio, Noé e sua família ficaram protegidos dentro da arca. Hoje podemos confiar que Deus também nos guarda nos momentos difíceis.</p>
         <div class="atividade">
             <h3>🛡️ Atividade: A arca da proteção</h3>
             <p>Desenhe uma grande arca. Dentro dela, escreva ou desenhe pessoas, sentimentos ou situações que você gostaria de entregar a Deus para que Ele proteja.</p>
             <div style="width:100%; height:120px; border:1px dashed #ccc; margin:10px 0;"></div>
         </div>
-        <div class="registro">
-            <span>📷 Registre seu momento:</span> Cole aqui uma foto ou desenho desta atividade.
-        </div>
     </div>
 
-    <!-- Dia 11 -->
+    <!-- Dia 11 NOVA ATIVIDADE (liga pontos) -->
     <div class="dia">
         <div class="dia-numero">Dia 11</div>
-        <div class="versiculo">
-            "O Senhor é o meu pastor; nada me faltará."<br>
-            <span>Salmo 23:1</span>
-        </div>
-        <p class="licao">
-            Noé experimentou o cuidado de Deus dentro da arca. Da mesma forma, Jesus é o nosso bom pastor que nos protege e supre todas as necessidades. Não precisamos ter medo.
-        </p>
+        <div class="versiculo">"O Senhor é o meu pastor; nada me faltará."<br><span>Salmo 23:1</span></div>
+        <p class="licao">Noé experimentou o cuidado de Deus dentro da arca. Da mesma forma, Jesus é o nosso bom pastor que nos protege e supre todas as necessidades.</p>
         <div class="atividade">
-            <h3>🔢 Atividade: Criptograma</h3>
-            <p>Descubra a frase secreta com o código abaixo:</p>
-            <table style="margin:10px 0;">
-                <tr><td>A=1</td><td>C=3</td><td>D=4</td><td>E=5</td><td>I=9</td><td>M=13</td><td>N=14</td><td>O=15</td><td>P=16</td><td>R=18</td><td>S=19</td><td>U=21</td></tr>
-            </table>
-            <p>4 5 21 19   3 21 9 4 1   4 5   14 15 5   14 1   1 18 3 1</p>
-            <p style="font-weight:bold; margin-top:10px;">Resposta: _________________________</p>
-            <p><em>(Dica: "DEUS CUIDA DE NOÉ NA ARCA")</em></p>
-        </div>
-        <div class="registro">
-            <span>📷 Registre seu momento:</span> Cole aqui uma foto ou desenho desta atividade.
+            <h3>✏️ Atividade: Ligue os pontos</h3>
+            <p>Ligue os números em ordem e descubra o desenho. Depois pinte e escreva uma frase de esperança.</p>
+            <img src="ligue-pontos-dia11.png" alt="Ligue os pontos: pomba com ramo">
         </div>
     </div>
 </div>
 
-<!-- Página 2 (Dias 12 a 14) -->
 <div class="caderno">
-    <div class="cabecalho">
-        <h1>📖 30 Dias com Deus</h1>
-        <p class="subtitulo">Semana 2 – A Arca de Noé</p>
-    </div>
+    <div class="cabecalho"><h1>📖 30 Dias com Deus</h1><p class="subtitulo">Semana 2 – A Arca de Noé</p></div>
 
-    <!-- Dia 12 (COM IMAGEM) -->
+    <!-- Dia 12 COM IMAGEM -->
     <div class="dia">
         <div class="dia-numero">Dia 12</div>
-        <div class="versiculo">
-            "E a pomba voltou a ele à tarde; e eis, arrancada, uma folha de oliveira em seu bico."<br>
-            <span>Gênesis 8:11</span>
-        </div>
-        <p class="licao">
-            Noé soltou uma pomba para ver se as águas tinham baixado. Quando ela voltou com um ramo de oliveira, Noé soube que a terra estava secando. Foi um sinal de esperança e renovação.
-        </p>
+        <div class="versiculo">"E a pomba voltou a ele... uma folha de oliveira em seu bico."<br><span>Gênesis 8:11</span></div>
+        <p class="licao">Noé soltou uma pomba para ver se as águas tinham baixado. Quando ela voltou com um ramo de oliveira, Noé soube que a terra estava secando.</p>
         <div class="atividade">
             <h3>🕊️ Atividade: Símbolo da esperança</h3>
             <p>Pinte a pomba e o ramo de oliveira. Depois escreva algo que lhe traz esperança.</p>
             <img src="atividade-dia12.png" alt="Pomba com ramo de oliveira">
         </div>
-        <div class="registro">
-            <span>📷 Registre seu momento:</span> Cole aqui uma foto ou desenho desta atividade.
-        </div>
     </div>
 
-    <!-- Dia 13 (COM IMAGEM) -->
+    <!-- Dia 13 COM IMAGEM -->
     <div class="dia">
         <div class="dia-numero">Dia 13</div>
-        <div class="versiculo">
-            "O meu arco tenho posto nas nuvens; este será por sinal da aliança entre mim e a terra."<br>
-            <span>Gênesis 9:13</span>
-        </div>
-        <p class="licao">
-            Depois do dilúvio, Deus colocou um arco-íris no céu como sinal da Sua promessa de nunca mais destruir a terra com água. O arco-íris nos lembra que Deus é fiel e cumpre Suas promessas.
-        </p>
+        <div class="versiculo">"O meu arco tenho posto nas nuvens..."<br><span>Gênesis 9:13</span></div>
+        <p class="licao">Depois do dilúvio, Deus colocou um arco-íris no céu como sinal da Sua promessa. O arco-íris nos lembra que Deus é fiel.</p>
         <div class="atividade">
             <h3>🎨 Atividade: Colorir o arco-íris</h3>
             <p>Pinte cada faixa do arco-íris. Em cada cor, escreva uma promessa de Deus para você.</p>
             <img src="atividade-dia13.png" alt="Arco-íris para colorir">
-        </div>
-        <div class="registro">
-            <span>📷 Registre seu momento:</span> Cole aqui uma foto ou desenho desta atividade.
         </div>
     </div>
 
     <!-- Dia 14 -->
     <div class="dia">
         <div class="dia-numero">Dia 14</div>
-        <div class="versiculo">
-            "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento."<br>
-            <span>Provérbios 3:5</span>
-        </div>
-        <p class="licao">
-            Noé confiou em Deus quando construiu a arca, mesmo sem ver a chuva. A fé é confiar em Deus mesmo quando não entendemos tudo. Podemos conversar com Ele sobre todas as coisas.
-        </p>
+        <div class="versiculo">"Confia no Senhor de todo o teu coração..."<br><span>Provérbios 3:5</span></div>
+        <p class="licao">Noé confiou em Deus quando construiu a arca, mesmo sem ver a chuva. A fé é confiar em Deus mesmo quando não entendemos tudo.</p>
         <div class="atividade">
             <h3>🤝 Atividade: Dinâmica da confiança</h3>
-            <p>Com um familiar, faça um "circuito de confiança": um fecha os olhos e o outro guia com a voz. Depois responda:</p>
+            <p>Com um familiar, um fecha os olhos enquanto o outro guia com a voz. Depois, responda:</p>
             <ul style="margin:10px 0 10px 20px;">
                 <li>Como foi confiar no outro?</li>
                 <li>Podemos confiar em Deus da mesma forma?</li>
@@ -319,11 +119,7 @@
             </ul>
             <div style="width:100%; height:80px; border:1px dashed #ccc; margin:10px 0;"></div>
         </div>
-        <div class="registro">
-            <span>📷 Registre seu momento:</span> Cole aqui uma foto ou desenho desta atividade.
-        </div>
     </div>
 </div>
-
 </body>
 </html>
